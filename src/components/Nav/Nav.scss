@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.Nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 45px 90px;
+
+	&-links a {
+		margin-right: 64px;
+		font-size: 18px;
+		font-weight: 600;
+		text-decoration: none;
+		color: $darkFont;
+	}
+}
