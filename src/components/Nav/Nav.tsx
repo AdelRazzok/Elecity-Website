@@ -4,8 +4,8 @@ import Button from '../Button/Button'
 import MobileMenu from './MobileMenu'
 import { useState } from 'react'
 
-const Nav = () => {
-	const [showMenu, setShowMenu] = useState(false)
+const Nav: React.FC = () => {
+	const [showMenu, setShowMenu] = useState<boolean>(false)
 
 	const toggleMenu = () => setShowMenu(prev => !prev)
 

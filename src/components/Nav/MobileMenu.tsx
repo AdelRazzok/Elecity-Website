@@ -2,8 +2,8 @@ import './Nav.scss'
 import Button from '../Button/Button'
 
 interface MobileMenu {
-	show: boolean,
-	handleClick: (prev: any) => any
+	show: boolean
+	handleClick: (prev: any) => void
 }
 
 const MobileMenu = (props: MobileMenu) => {
