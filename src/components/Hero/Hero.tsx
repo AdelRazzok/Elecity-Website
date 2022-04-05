@@ -46,35 +46,18 @@ const Hero: React.FC = () => {
   const [offers, setoffers] = useState<OfferInterface[]>(DUMMY_OFFERS)
   
   const toggleActiveOnOffer = (id: number) => {
-    console.log(id);
-    
     setoffers(prevOffers => prevOffers.map( offer => {
       offer.active = false
-      if(offer.id == id) {
-        offer.active = true
-      }
+      if(offer.id == id) offer.active = true
       return offer
     }))
-
-    // DUMMY_OFFERS.forEach( (offer,i) => DUMMY_OFFERS[i].active = false )
-    
-    // DUMMY_OFFERS.forEach( (offer,i) => { if(offer.id == id) DUMMY_OFFERS[i].active = true } )
-    
-    // setoffers(DUMMY_OFFERS)
   }
   
-  useEffect(() => {
-    console.log('ok');
-    
-  }, [offers])
-  
   const rederedOffers = offers?.map( offer => {
-    console.log('rendered');
     return (
       <HeroOffer key={offer.id} offer={offer} toggleActiveOnOffer={toggleActiveOnOffer}/>
     )
   })
-
   
   return (
     <section className="Hero">
