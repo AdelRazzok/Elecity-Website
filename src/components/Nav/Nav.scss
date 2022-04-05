@@ -1,12 +1,12 @@
 @import '../../styles/variables.scss';
+@import '../../styles/placeholders.scss';
 
 .Nav {
-	display: flex;
+	@extend %flex-center;
 	justify-content: space-between;
-	align-items: center;
 	padding: 45px 90px;
 
-	&-links a {
+	&-links .link {
 		margin-right: 64px;
 		font-size: 18px;
 		font-weight: 600;
