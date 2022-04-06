@@ -1,0 +1,71 @@
+@import '../../styles/variables.scss';
+@import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
+
+.Nav {
+	@extend %flex-center;
+	justify-content: space-between;
+	padding: 16px 32px;
+
+	&-logo {
+		max-width: 50%;
+	}
+
+	&-links {
+		display: none;
+	}
+
+	// &-mobile button {
+		
+	// }
+
+	@include breakpoint-up(large) {
+		padding: 45px 90px;
+
+		&-links {
+			display: block;
+		}
+		&-links .link {
+			margin-right: 64px;
+			font-size: 18px;
+			font-weight: 600;
+			text-decoration: none;
+			color: $darkFont;
+		}
+		&-mobile {
+			display: none;
+		}
+	}
+}
+
+.MobileMenu {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #303030;
+
+	&-close-btn {
+		position: fixed;
+		top: 16px;
+		right: 16px;
+	}
+
+	&-links {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		@extend %flex-center;
+		flex-direction: column;
+		gap: 5rem;
+	}
+
+	&-links .link {
+		font-size: 20px;
+		font-weight: 600;
+		text-decoration: none;
+		color: $lightFont;
+	}
+}

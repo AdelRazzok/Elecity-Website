@@ -1,8 +1,31 @@
 @import '../../styles/variables.scss';
+@import '../../styles/placeholders.scss';
 
 .Hero {
+
+  padding-inline: 8.75rem;
+
   > h1 {
-    font-size: $fontSizeLarge;
-    color: $electricBlue;
+    font-family: $fontOswald;
+    font-size: $fontSizeXLarge;
+    font-weight: 500;
+
+    > span {
+      display: block;
+    }
+  }
+
+  > p {
+    font-family: $fontMontserrat;
+    font-size: $fontSizeNormal;
+    font-weight: 400;
+    line-height: 1.6;
+    color: $darkFont;
+    margin-top: 1.6rem;
+  }
+
+  &-offers {
+    @extend %flex-center;
+    gap: 1.6rem;
   }
 }

@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.Button {
+	padding: 14px 15px;
+	font-size: 18px;
+	font-weight: 600;
+	text-decoration: none;
+	background: $electricBlue;
+	border-radius: 13px;
+	// filter: drop-shadow(0px 0px 10px $electricBlue);
+	box-shadow: 0px 0px 10px $electricBlue;
+	color: #fff;
+}

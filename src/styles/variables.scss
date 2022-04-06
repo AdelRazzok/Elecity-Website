@@ -5,11 +5,22 @@ $lightSilver: #EDF1F4;
 $darkFont: #01030D;
 $lightFont: #EAEAEA;
 
+// Font import
+@font-face {
+  font-family: 'Conthrax';
+  src: url(../assets/font/conthrax-sb.ttf) format('ttf');
+}
+
 // Fonts
-$fontMontserrat: 'Montserrat', sans-serif;
-$fontOswald: 'Oswald', sans-serif;
+$fontMontserrat: 'Montserrat', sans-serif; // 300, 400, 600
+$fontOswald: 'Oswald', sans-serif; // 300, 400, 500
+$fontConthrax: 'Conthrax', sans-serif;
 
 // Font sizes
 $fontSizeSmall: 1.2rem;
+$fontSizeNormal: 1.4rem;
 $fontSizeMedium: 1.6rem;
 $fontSizeLarge: 2.4rem;
+$fontSizeXLarge: 3.2rem;
+
+
