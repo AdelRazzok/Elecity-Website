@@ -1,0 +1,9 @@
+@import './Introduction.scss';
+
+.Introduction {
+	&-title {
+		font-family: $fontOswald;
+		font-size: $fontSizeXLarge;
+		font-weight: 500;
+	}
+}

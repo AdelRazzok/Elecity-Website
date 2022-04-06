@@ -1,7 +1,7 @@
 import './Nav.scss'
 import logo from '../../assets/svg/logo.svg'
 import Button from '../Button/Button'
-import MobileMenu from './MobileMenu'
+import MobileMenu from '../MobileMenu/MobileMenu'
 import { useState } from 'react'
 
 const Nav: React.FC = () => {

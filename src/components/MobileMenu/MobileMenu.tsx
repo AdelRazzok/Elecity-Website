@@ -1,16 +1,16 @@
-import './Nav.scss'
+import './MobileMenu.scss'
 import Button from '../Button/Button'
 
-interface MobileMenu {
+interface Props {
 	show: boolean
-	handleClick: (prev: any) => void
+	handleClick: () => void
 }
 
-const MobileMenu = (props: MobileMenu) => {
+const MobileMenu: React.FC<Props> = ({ show, handleClick }) => {
 	
 	return (
-		props.show ? <div className='MobileMenu'>
-			<button type='button' className='MobileMenu-close-btn' onClick={props.handleClick}>X</button>
+		show ? <div className='MobileMenu'>
+			<button type='button' className='MobileMenu-close-btn' onClick={handleClick}>X</button>
 			<div className="MobileMenu-links">
 				<a href="#" className='link'>Accueil</a>
 				<a href="#" className='link'>Location</a>

@@ -1,6 +1,11 @@
 import './Button.scss'
 
-const Button = (props: { link: string, text: string}) => {
-	return <a href={props.link} className='Button'>{props.text}</a>
+interface Props {
+	link: string
+	text: string
+} 
+
+const Button: React.FC<Props> = ({ link, text }) => {
+	return <a href={link} className='Button'>{text}</a>
 } 
 export default Button
