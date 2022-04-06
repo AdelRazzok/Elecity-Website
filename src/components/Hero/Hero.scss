@@ -1,0 +1,8 @@
+@import '../../styles/variables.scss';
+
+.Hero {
+  > h1 {
+    font-size: $fontSizeLarge;
+    color: $electricBlue;
+  }
+}
