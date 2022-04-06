@@ -1,6 +1,9 @@
-@import './Introduction.scss';
+@import '../../styles/variables.scss';
 
-.Introduction {
+.Steps {
+
+	padding: 10rem 8.75rem;
+
 	&-title {
 		font-family: $fontOswald;
 		font-size: $fontSizeXLarge;
