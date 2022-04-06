@@ -14,9 +14,9 @@ export default function App() {
 			</div>
 			<Steps />
 
-			{/* <hr />
+			<hr />
 			<Map />
-			<Footer /> */}
+			<Footer />
 		</div>
 	)
 }
