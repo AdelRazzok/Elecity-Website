@@ -8,8 +8,10 @@ import Steps from './components/Steps/Steps'
 export default function App() {
 	return (
 		<div className="App">
-			<Nav />
-			<Hero />
+			<div className="App-bg">
+				<Nav />
+				<Hero />
+			</div>
 			<Steps />
 
 			<hr />

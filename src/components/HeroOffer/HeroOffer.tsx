@@ -41,7 +41,9 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
           </div>
           <img src={citadine} />
         </div>
-        {!offer.active && <span>{offer.model}</span>}
+        <div className="HeroOffer-foot">
+          {!offer.active && <span>{offer.model}</span>}
+        </div>
 
       </div>
     </>

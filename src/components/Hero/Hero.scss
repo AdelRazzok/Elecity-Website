@@ -4,6 +4,7 @@
 .Hero {
 
   padding-inline: 8.75rem;
+  padding-bottom: 150px;
 
   > h1 {
     font-family: $fontOswald;
@@ -22,12 +23,19 @@
     line-height: 1.6;
     color: $darkFont;
     margin-top: 1.6rem;
+    margin-bottom: 7.25rem;
   }
 
   &-offers {
     @extend %flex-center;
     height: 300px;
+    // flex-direction: column;
+    // width: 550px;
     align-items: flex-end;
     gap: 1.6rem;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
