@@ -32,19 +32,6 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
           <img src={plug} />
         </div>
 
-        <div className="HeroOffer-body">
-          <div className="HeroOffer-body-info">
-            {offer.active && <h3>{offer.model}</h3>}
-            {offer.active && <p>{offer.traits.join(' • ')}</p>}
-            {offer.active && <h3>{offer.price}€/heure</h3>}
-            {offer.active && <Button link='#' text='Louer' />}
-          </div>
-          <img src={citadine} />
-        </div>
-        <div className="HeroOffer-foot">
-          {!offer.active && <span>{offer.model}</span>}
-        </div>
-
       </div>
     </>
   )
