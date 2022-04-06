@@ -26,6 +26,8 @@
 
   &-offers {
     @extend %flex-center;
+    height: 300px;
+    align-items: flex-end;
     gap: 1.6rem;
   }
 }

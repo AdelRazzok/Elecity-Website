@@ -2,31 +2,55 @@
 @import '../../styles/placeholders.scss';
 
 .HeroOffer{
-  @extend %flex-center;
-  justify-content: flex-end;
+  background-color: $white;
   border: solid 1px $electricBlue;
   height: 230px;
   width: 300px;
+  transition: ease-in-out 200ms;
 
   &.active {
-    justify-content: space-between;
+  
     height: 300px;
     width: 550px;
+    .HeroOffer-head {
+      justify-content: flex-start;
+    }
+    .HeroOffer-body-info {
+      justify-content: space-between;
+    }
+  
   }
 
-  &-carImg {
-    height: 50%;
-  }
-
-  &-info {
+  &-head {
     @extend %flex-center;
-    flex-direction: column;
-    align-items: flex-start;
-    &-head{
-      @extend %flex-center;
-      img {
-        height: 50px;
-      }
+    gap: 1.25rem;
+    justify-content: space-between;
+    > span {
+      display: flex;
+      gap: 0.3125rem;
+    }
+    img {
+      height: 30px;
     }
   }
+
+  &-body {
+  
+    @extend %flex-center;
+    justify-content: space-between;
+    height: fit-content;
+    > img {
+      height: 100px;
+    }
+
+    &-info {
+      height: 100%;
+      @extend %flex-center;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: end;
+    }
+  
+  }
+
 }
