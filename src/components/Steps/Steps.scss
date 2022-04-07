@@ -1,12 +1,27 @@
 @import '../../styles/variables.scss';
+@import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
 
 .Steps {
-
-	padding: 10rem 8.75rem;
+	padding: 12rem 1rem;
+	background: $white;
 
 	&-title {
 		font-family: $fontOswald;
 		font-size: $fontSizeXLarge;
 		font-weight: 500;
+	}
+
+	&-container {
+		@extend %flex-center;
+		flex-wrap: wrap;
+		gap: 3rem;
+		margin-top: 5rem;
+	}
+
+	@include breakpoint-up(large) {
+		& {
+			padding-inline: 8.75rem;
+		}
 	}
 }

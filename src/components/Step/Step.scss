@@ -1,0 +1,40 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/placeholders.scss';
+
+.Step {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+	
+	&-wrapper {
+		@extend %flex-center;
+		flex-direction: column;
+		text-align: center;
+		padding: 0.5rem 1rem;
+		background: #fff;
+		border-radius: 30px;
+		transform: skew(15deg);
+		box-shadow: 0 0 10px rgba($color: #000, $alpha: 0.1);
+	}
+
+	&-wrapper p {
+		transform: skew(-15deg);
+	}
+
+	> span {
+		margin: auto;
+		font-size: $fontSizeMedium;
+		font-family: $fontOswald;
+		font-weight: 500;
+	}
+
+
+	@include breakpoint-up(large) {
+		& {
+			width: 20%;
+		}
+	}
+}
