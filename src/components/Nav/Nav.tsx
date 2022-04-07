@@ -3,11 +3,13 @@ import logo from '../../assets/svg/logo.svg'
 import Button from '../Button/Button'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
 
 const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
 
-	const toggleMenu = () => setShowMenu(prev => !prev)
+	const openMenu = () => setShowMenu(true)
+	const closeMenu = () => setShowMenu(false)
 
 	return (
 		<>
@@ -21,11 +23,13 @@ const Nav: React.FC = () => {
 					<Button link='#' text='Connexion' />
 				</div>
 				<div className="Nav-mobile">
-					<button type='button' onClick={toggleMenu}>menu</button>
+					<button type='button' onClick={() => (showMenu ? closeMenu() : openMenu())}>menu</button>
 				</div>
 			</nav>
 
-			<MobileMenu show={showMenu} handleClick={toggleMenu} />
+			<AnimatePresence>
+				{showMenu && <MobileMenu showMenu={showMenu} handleClose={closeMenu} />}
+			</AnimatePresence>
 		</>
 	)
 }

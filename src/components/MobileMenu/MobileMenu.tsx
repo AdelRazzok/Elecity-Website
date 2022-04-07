@@ -1,16 +1,50 @@
 import './MobileMenu.scss'
 import Button from '../Button/Button'
+import { motion } from 'framer-motion'
 
 interface Props {
-	show: boolean
-	handleClick: () => void
+	showMenu: boolean
+	handleClose: () => void
 }
 
-const MobileMenu: React.FC<Props> = ({ show, handleClick }) => {
+const MobileMenu: React.FC<Props> = ({ showMenu, handleClose }) => {
 	
+	const dropIn = {
+		hidden: {
+			y: '-100vh',
+			opacity: 0,
+		},
+		visible: {
+			y: '0',
+			opacity: 1,
+			transition: {
+				duration: 0.2,
+				type: 'spring',
+				damping: 25,
+				stiffness: 100,
+			},
+		},
+		exit: {
+			y: '-100vh',
+			opacity: 0,
+			transition: {
+				duration: 0.2,
+				type: 'spring',
+				damping: 25,
+				stiffness: 100,
+			}
+		}
+	}
+
 	return (
-		show ? <div className='MobileMenu'>
-			<button type='button' className='MobileMenu-close-btn' onClick={handleClick}>X</button>
+		<motion.div
+			className='MobileMenu'
+			variants={dropIn}
+			initial='hidden'
+			animate='visible'
+			exit='exit'
+		>
+			<button type='button' className='MobileMenu-close-btn' onClick={handleClose}>X</button>
 			<div className="MobileMenu-links">
 				<a href="#" className='link'>Accueil</a>
 				<a href="#" className='link'>Location</a>
@@ -18,7 +52,7 @@ const MobileMenu: React.FC<Props> = ({ show, handleClick }) => {
 				<a href="#" className='link'>S'enregistrer</a>
 				<Button link='#' text='Connexion' />
 			</div>
-		</div> : null
+		</motion.div>
 	)
 }
 export default MobileMenu
