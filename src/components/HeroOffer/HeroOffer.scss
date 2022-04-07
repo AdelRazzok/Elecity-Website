@@ -19,7 +19,7 @@
   border-radius: 30px;
 
   transform: skew(-15deg);
-  transition: ease-in-out 200ms;
+  transition: $transitionInOut;
   
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
       // height: 180px;
       width: 240px;
     }
-    transition: ease-in-out 200ms;
+    transition: $transitionInOut;
     @include breakpoint-up(medium){
       box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
     }
@@ -45,7 +45,7 @@
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
     // &:not(.active) {
     //   .HeroOffer-img {
-    //     transition: ease-in-out 200ms;
+    //     transition: $transitionInOut;
     //     right: 0;
     //   }
     // }
@@ -138,7 +138,7 @@
         width: 70%;
         top: 50%;
         transform: translateY(-50%) skew(15deg);
-        transition: ease-in-out 200ms;
+        transition: $transitionInOut;
       }
     }
   }
