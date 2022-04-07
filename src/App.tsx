@@ -1,22 +1,19 @@
-import './App.scss'
-import Footer from '../src/components/Footer/Footer'
-import Map from '../src/components/Map/Map'
-import Nav from '../src/components/Nav/Nav'
-import Hero from './components/Hero/Hero'
-import Steps from './components/Steps/Steps'
+import React from 'react'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from 'react-router-dom'
+import Home from './Home/Home'
 
-export default function App() {
-	return (
-		<div className="App">
-			<div className="App-bg">
-				<Nav />
-				<Hero />
-			</div>
-			<Steps />
-
-			<hr />
-			<Map />
-			<Footer />
-		</div>
-	)
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
+  )
 }
+
+export default App
