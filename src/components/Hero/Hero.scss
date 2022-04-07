@@ -4,12 +4,35 @@
 
 .Hero {
 
-  padding-inline: 8.75rem;
-  padding-bottom: 150px;
+  
+  @include breakpoint-up(medium){
+    padding-inline: 6.25rem;
+    padding-top: 60px;
+  }
+  @include breakpoint-up(large){
+    padding-inline: 8.75rem;
+  }
+  padding-inline: 1.875rem;
+
+
+  @include breakpoint-up(medium){
+    padding-bottom: 900px;
+  }
+  @include breakpoint-up(large){
+    padding-bottom: 180px;
+  }
+  padding-bottom: 700px;
 
   > h1 {
     font-family: $fontOswald;
-    font-size: $fontSizeXLarge;
+    @include breakpoint-up(large){
+      font-size: $fontSizeXLarge;
+    }
+    @include breakpoint-up(medium){
+      font-size: $fontSizeLarge;
+    }
+    font-size: $fontSizeLarge;
+    
     font-weight: 500;
 
     > span {
@@ -19,20 +42,42 @@
 
   > p {
     font-family: $fontMontserrat;
+    @include breakpoint-up(large){
+      font-size: $fontSizeNormal;
+    }
+    @include breakpoint-up(medium){
+      font-size: $fontSizeNormal;
+    }
     font-size: $fontSizeNormal;
+
     font-weight: 400;
     line-height: 1.6;
     color: $darkFont;
+
     margin-top: 1.6rem;
-    margin-bottom: 7.25rem;
+    @include breakpoint-up(large){
+      margin-bottom: 7.25rem;
+    }
+    margin-bottom: 2.5rem; 
   }
 
   &-offers {
+    // Mobile et tablettes - Offres de haut en bas
     @extend %flex-center;
-
     flex-direction: column;
-    width: 550px;
     align-items: flex-end;
+
+    padding-right: 30px;
+    @include breakpoint-up(medium) {
+      padding-right: unset;
+    }
+
+    @include breakpoint-up(medium) {
+      width: 550px;
+    }
+    width: 310px;
+
+    // Desktop - Offres de gauche à droite
     @include breakpoint-up('large') {
       width: unset;
       flex-direction: unset;
@@ -40,6 +85,7 @@
       height: 300px;
     }
 
+    // Espaces entre les offres
     gap: 1.6rem;
 
     position: absolute;

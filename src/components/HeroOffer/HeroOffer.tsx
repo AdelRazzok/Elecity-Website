@@ -3,7 +3,6 @@ import './HeroOffer.scss'
 import { OfferInterface } from '../Hero/Hero'
 import Button from '../Button/Button'
 
-import citadine from '../../assets/img/citadine.png'
 import plug from '../../assets/img/plug.png'
 import brandLogo from '../../assets/svg/peugeot.svg'
 
@@ -22,6 +21,8 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
     <>
       <div onClick={handleClick} className={`HeroOffer ${offer.active ? 'active' : ''}`} >
 
+        <img src={offer.img} className="HeroOffer-img" />
+
         <div className="HeroOffer-head">
           {offer.active && <img src={brandLogo} />}
           <span>
@@ -30,6 +31,15 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
             <span>{offer.type}</span>
           </span>
           <img src={plug} />
+        </div>
+
+        <div className="HeroOffer-body">
+          <div className="HeroOffer-body-info">
+            <span className="HeroOffer-body-info-model">{`Peugeot ${offer.model}`}</span>
+            {offer.active && <span className="HeroOffer-body-info-traits">{offer.traits.join(' • ')}</span>}
+            {offer.active && <span className="HeroOffer-body-info-price"><em>{offer.price}</em><em> €</em> /heure</span>}
+            {offer.active && <Button link="#" text="Louer" />}
+          </div>
         </div>
 
       </div>

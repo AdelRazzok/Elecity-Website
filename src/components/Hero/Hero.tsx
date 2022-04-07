@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react'
 import HeroOffer from '../HeroOffer/HeroOffer';
 import './Hero.scss'
 
+import citadine from '../../assets/img/citadine.png'
+import suv from '../../assets/img/suv.png'
+import combispace from '../../assets/img/combispace.png'
+
 export interface OfferInterface {
   active?: boolean;
   id: number;
@@ -13,52 +17,58 @@ export interface OfferInterface {
 }
 
 const DUMMY_OFFERS: OfferInterface[]
-= [
-  {
-    active: true,
-    id: 1,
-    type: 'Citadine',
-    model: 'Peugeot e-208',
-    traits: ['Electrique', 'Automatique', '5 places'],
-    price: '7',
-    img: '',
-  },
-  {
-    id: 2,
-    type: 'SUV',
-    model: 'Peugeot e-208',
-    traits: ['Electrique', 'Automatique', '5 places'],
-    price: '7',
-    img: '',
-  },
-  {
-    id: 3,
-    type: 'Combispace',
-    model: 'Peugeot e-208',
-    traits: ['Electrique', 'Automatique', '5 places'],
-    price: '7',
-    img: '',
-  }
-]
+  = [
+    {
+      active: true,
+      id: 1,
+      type: 'Citadine',
+      model: 'e-208',
+      traits: ['Electrique', 'Automatique', '5 places'],
+      price: '7',
+      img: citadine,
+    },
+    {
+      id: 2,
+      type: 'SUV',
+      model: 'e-2008',
+      traits: ['Electrique', 'Automatique', '5 places'],
+      price: '11',
+      img: suv,
+    },
+    {
+      id: 3,
+      type: 'Combispace',
+      model: 'e-Rifter',
+      traits: ['Electrique', 'Automatique', '7 places'],
+      price: '13',
+      img: combispace,
+    }
+  ]
 
 const Hero: React.FC = () => {
 
-  const [offers, setoffers] = useState<OfferInterface[]>(DUMMY_OFFERS)
-  
+  const [offers, setOffers] = useState<OfferInterface[]>([])
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOffers(DUMMY_OFFERS)
+    }, 5000);
+  }, [])
+
   const toggleActiveOnOffer = (id: number) => {
-    setoffers(prevOffers => prevOffers.map( offer => {
+    setOffers(prevOffers => prevOffers.map(offer => {
       offer.active = false
-      if(offer.id == id) offer.active = true
+      if (offer.id == id) offer.active = true
       return offer
     }))
   }
-  
-  const rederedOffers = offers?.map( offer => {
+
+  const rederedOffers = offers?.map(offer => {
     return (
-      <HeroOffer key={offer.id} offer={offer} toggleActiveOnOffer={toggleActiveOnOffer}/>
+      <HeroOffer key={offer.id} offer={offer} toggleActiveOnOffer={toggleActiveOnOffer} />
     )
   })
-  
+
   return (
     <section className="Hero">
       <h1>LOUEZ PROPRE ET LOCAL <span>EN TOUTE FACILITÉ</span></h1>

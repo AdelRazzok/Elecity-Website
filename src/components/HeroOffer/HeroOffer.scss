@@ -1,66 +1,215 @@
 @import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
 @import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
 
 .HeroOffer{
-  height: 230px;
-  width: 300px;
+  // Cellulue de base
+  @include breakpoint-up(medium){
+    height: 200px;
+    width: 270px;
+  }
+  @include breakpoint-up(large){
+    height: 180px;
+    width: 200px;
+  }
+  height: 130px;
+  width: 240px;
 
   padding: 1rem;
   border-radius: 30px;
 
   transform: skew(-15deg);
   transition: ease-in-out 200ms;
-
+  
   display: flex;
   flex-direction: column;
-
+  justify-content: space-between;
+  
   overflow: hidden;
   background-color: white;
   cursor: pointer;
-
-  &:hover {
-    height: 250px;
-    width: 320px;
-    transition: ease-in-out 200ms;
-    box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25);
-
-  }
-
-  &.active {
-    height: 300px;
-    width: 550px;
-    padding: 1.25rem;
-    box-shadow: 0px 30px 150px rgba(0, 0, 0, 0.25);
-    cursor: unset;
-    .HeroOffer-head {
-      justify-content: flex-start;
-    }
+  user-select: none;
   
+  &:hover {
+    @include breakpoint-up(large){
+      // height: 180px;
+      width: 240px;
+    }
+    transition: ease-in-out 200ms;
+    @include breakpoint-up(medium){
+      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+    }
+    @include breakpoint-up(large){
+      box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25);
+    }
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+    // &:not(.active) {
+    //   .HeroOffer-img {
+    //     transition: ease-in-out 200ms;
+    //     right: 0;
+    //   }
+    // }
   }
 
+  // Cellule active
+  &.active {
+    @include breakpoint-up(medium){
+      height: 270px;
+      width: 520px;
+    }
+    @include breakpoint-up(large){
+      height: 300px;
+      width: 550px;
+    }
+    height: 350px;
+    width: 240px;
+    transform: skew(-15deg);
+
+    padding: 1.25rem;
+    box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.25);
+    @include breakpoint-up(large){
+      box-shadow: 0px 30px 150px rgba(0, 0, 0, 0.25);
+    }
+
+    cursor: unset;
+    .HeroOffer {
+      &-head {
+        justify-content: flex-start;
+      }
+      &-body {
+        transform: skew(-15deg);
+        height: 100%;
+        
+        &-info {
+          transform: skew(15deg);
+          justify-content: unset;
+          @include breakpoint-up(medium){
+            height: 80%;
+          }
+          height: 100%;
+
+          & > * {
+            transform: skew(15deg);
+          }
+
+          &-model {
+            margin-top: 1rem;
+            font-size: $fontSizeMedium;
+            font-weight: 600;
+            // user-select:all;
+          }
+
+          &-traits {
+            color: #595959;
+            font-size: $fontSizeXSmall;
+          }
+          
+          &-price {
+            margin-top: auto;
+            margin-bottom: 2rem;
+            @include breakpoint-up(medium) {
+              margin-block: auto;
+              // margin-bottom: unset;
+            }
+            > em {
+              color: $darkFont;
+              font-style: normal;
+              &:first-child{
+                // font-family: 'Roboto', sans-serif;
+                font-size: $fontSizeLarge;
+                font-weight: 600;
+              }
+              &:last-child {
+                font-size: unset;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+
+      }
+      &-img {
+        @include breakpoint-up(medium) {
+          width: 50%;
+        }
+        @include breakpoint-up(large) {
+          width: 60%;
+        }
+        width: 70%;
+        top: 50%;
+        transform: translateY(-50%) skew(15deg);
+        transition: ease-in-out 200ms;
+      }
+    }
+  }
+
+
+
+  position: relative;
+  &-img {
+    position: absolute;
+    right: -5px;
+    @include breakpoint-up(medium) {
+      top: 50%;
+      transform: translateY(-50%) skew(15deg);
+    }
+    top: 80%;
+    transform: translateY(-80%) skew(15deg);
+    
+    @include breakpoint-up(medium){
+      width: 70%;
+    }
+    @include breakpoint-up(large){
+      width: 70%;
+    }
+    width: 50%;
+  }
+  
   &-head {
     transform: skew(15deg);
+
+    width: 100%;
     @extend %flex-center;
-    gap: 1.25rem;
     justify-content: space-between;
+
+    gap: 0.5rem;
+    @include breakpoint-up(medium) {
+      gap: 1.25rem;
+    }
+
     font-family: $fontConthrax;
+    font-size: $fontSizeXSmall;
+
     > span {
       display: flex;
-      gap: 0.3125rem;
+      gap: 0.3rem;
     }
+
     img {
-      height: 30px;
+      @include breakpoint-up(medium) {
+        height: 30px;
+      }
+      height: 20px;
     }
   }
 
   &-body {
     transform: skew(15deg);
 
-  }
-  &-foot {
-    transform: skew(15deg);
+    &-info {
+      @extend %flex-center;
+      align-items: flex-start;
 
-  }
+      flex-direction: column;
+      @include breakpoint-up(medium) {
+      }
 
+      &-model {
+        font-weight: 600;
+      }
+      &-price {
+        color: #595959;
+      }
+    }
+  }
 }
