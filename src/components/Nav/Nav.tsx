@@ -8,8 +8,16 @@ import { AnimatePresence } from 'framer-motion'
 const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
 
-	const openMenu = () => setShowMenu(true)
-	const closeMenu = () => setShowMenu(false)
+	const bodyEl = document.getElementsByTagName('body')[0]
+
+	const openMenu = () => {
+		bodyEl.style.overflow = 'hidden'
+		setShowMenu(true)
+	} 
+	const closeMenu = () => {
+		bodyEl.style.overflow = 'auto'
+		setShowMenu(false)
+	} 
 
 	return (
 		<>
@@ -23,7 +31,7 @@ const Nav: React.FC = () => {
 					<Button link='#' text='Connexion' />
 				</div>
 				<div className="Nav-mobile">
-					<button type='button' onClick={() => (showMenu ? closeMenu() : openMenu())}>menu</button>
+					<button type='button' id='mobilemenu-open' onClick={() => (showMenu ? closeMenu() : openMenu())}>menu</button>
 				</div>
 			</nav>
 

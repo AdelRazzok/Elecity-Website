@@ -7,8 +7,7 @@ interface Props {
 	handleClose: () => void
 }
 
-const MobileMenu: React.FC<Props> = ({ showMenu, handleClose }) => {
-	
+const MobileMenu: React.FC<Props> = ({ handleClose }) => {
 	const dropIn = {
 		hidden: {
 			y: '-100vh',
@@ -44,7 +43,7 @@ const MobileMenu: React.FC<Props> = ({ showMenu, handleClose }) => {
 			animate='visible'
 			exit='exit'
 		>
-			<button type='button' className='MobileMenu-close-btn' onClick={handleClose}>X</button>
+			<button type='button' id='mobilemenu-close' className='MobileMenu-close-btn' onClick={handleClose}>X</button>
 			<div className="MobileMenu-links">
 				<a href="#" className='link'>Accueil</a>
 				<a href="#" className='link'>Location</a>
