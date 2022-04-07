@@ -4,6 +4,7 @@ import Button from '../Button/Button'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { FaStream } from 'react-icons/fa'
 
 const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
@@ -31,7 +32,13 @@ const Nav: React.FC = () => {
 					<Button link='#' text='Connexion' />
 				</div>
 				<div className="Nav-mobile">
-					<button type='button' id='mobilemenu-open' onClick={() => (showMenu ? closeMenu() : openMenu())}>menu</button>
+					<button
+						type='button'
+						id='mobilemenu-open'
+						onClick={() => (showMenu ? closeMenu() : openMenu())}
+					>
+						<FaStream />
+					</button>
 				</div>
 			</nav>
 

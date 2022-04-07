@@ -15,9 +15,10 @@
 		display: none;
 	}
 
-	// &-mobile button {
-		
-	// }
+	&-mobile button {
+		all: unset;
+		font-size: $fontSizeMedium;
+	}
 
 	@include breakpoint-up(large) {
 		padding: 45px 90px;
