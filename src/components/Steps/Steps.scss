@@ -3,10 +3,10 @@
 @import '../../styles/mixins.scss';
 
 .Steps {
-	padding: 7rem 0.8rem;
+	padding: 8rem 0.8rem;
 	background: $white;
 	@include breakpoint-up(large) {
-		padding: 12rem 8.75rem;
+		padding: 12.5rem 8.75rem;
 	}
 	
 	&-title {
@@ -22,7 +22,11 @@
 	&-container {
 		@extend %flex-center;
 		flex-wrap: wrap;
-		gap: 3rem;
+		gap: 5rem;
 		margin-top: 5rem;
+		@include breakpoint-up(large) {
+			gap: 3rem;
+			margin-top: 6rem;
+		}
 	}
 }
