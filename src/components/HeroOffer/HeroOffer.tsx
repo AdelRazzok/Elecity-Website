@@ -38,7 +38,7 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
             <span className="HeroOffer-body-info-model">{`Peugeot ${offer.model}`}</span>
             {offer.active && <span className="HeroOffer-body-info-traits">{offer.traits.join(' • ')}</span>}
             {offer.active && <span className="HeroOffer-body-info-price"><em>{offer.price}</em><em> €</em> /heure</span>}
-            {offer.active && <Button link="#" text="Louer" />}
+            {offer.active && <Button styles={{paddingInline: '2.1875rem'}} link="#" text="Louer" />}
           </div>
         </div>
 

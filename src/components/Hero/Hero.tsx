@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     setTimeout(() => {
       setOffers(DUMMY_OFFERS)
-    }, 5000);
+    }, 0);
   }, [])
 
   const toggleActiveOnOffer = (id: number) => {
