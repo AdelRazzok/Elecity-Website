@@ -3,13 +3,20 @@
 @import '../../styles/mixins.scss';
 
 .Steps {
-	padding: 12rem 1rem;
+	padding: 7rem 0.8rem;
 	background: $white;
-
+	@include breakpoint-up(large) {
+		padding: 12rem 8.75rem;
+	}
+	
 	&-title {
 		font-family: $fontOswald;
-		font-size: $fontSizeXLarge;
+		font-size: $fontSizeLarge;
 		font-weight: 500;
+		@include breakpoint-up(large) {
+			font-size: $fontSizeXLarge;
+			font-weight: 500;
+		}
 	}
 
 	&-container {
@@ -17,11 +24,5 @@
 		flex-wrap: wrap;
 		gap: 3rem;
 		margin-top: 5rem;
-	}
-
-	@include breakpoint-up(large) {
-		& {
-			padding-inline: 8.75rem;
-		}
 	}
 }

@@ -4,7 +4,7 @@ import Step from '../Step/Step'
 
 const Introduction: React.FC = () => {
 
-	const stepsList = stepsData.map(step => <Step id={step.id} text={step.text} />)
+	const stepsList = stepsData.map(step => <Step key={step.id} id={step.id} text={step.text} />)
 
 	return (
 		<section className="Steps">
