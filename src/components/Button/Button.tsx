@@ -4,7 +4,7 @@ import './Button.scss'
 interface Props {
 	link: string
 	text: string
-	styles: CSSProperties
+	styles?: CSSProperties
 } 
 
 const Button: React.FC<Props> = ({ link, text, styles }) => {
