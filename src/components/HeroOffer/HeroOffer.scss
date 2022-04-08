@@ -185,7 +185,13 @@
       gap: 0.3rem;
     }
 
-    img {
+    img:first-child {
+      @include breakpoint-up(medium) {
+        height: 40px;
+      }
+      height: 20px;
+    }
+    img:last-child {
       @include breakpoint-up(medium) {
         height: 30px;
       }

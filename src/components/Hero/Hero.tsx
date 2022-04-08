@@ -19,7 +19,6 @@ export interface OfferInterface {
 const DUMMY_OFFERS: OfferInterface[]
   = [
     {
-      active: true,
       id: 1,
       type: 'Citadine',
       model: 'e-208',
@@ -50,9 +49,8 @@ const Hero: React.FC = () => {
   const [offers, setOffers] = useState<OfferInterface[]>([])
 
   useEffect(() => {
-    setTimeout(() => {
-      setOffers(DUMMY_OFFERS)
-    }, 0);
+    DUMMY_OFFERS[0].active = true
+    setOffers(DUMMY_OFFERS)
   }, [])
 
   const toggleActiveOnOffer = (id: number) => {
