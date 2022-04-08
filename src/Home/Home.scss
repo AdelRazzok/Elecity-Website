@@ -1,9 +1,0 @@
-@import '../styles/globals.scss';
-@import '../styles/variables.scss';
-@import '../styles/placeholders.scss';
-
-.Home {
-  &-bg {
-    background-image: linear-gradient(to bottom, $darkSilver, $lightSilver, $darkSilver);
-  }
-}

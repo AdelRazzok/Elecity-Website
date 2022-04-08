@@ -4,6 +4,24 @@
 
 .Hero {
 
+	&::before {
+		position: absolute;
+		content: '';
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: linear-gradient(to bottom, $darkSilver, $lightSilver, $darkSilver);
+		z-index: -1;
+
+		@include breakpoint-up(medium){
+		  bottom: -900px;
+		}
+		@include breakpoint-up(large){
+		  bottom: -180px;
+		}
+		bottom: -700px;
+	}
   
   @include breakpoint-up(medium){
     padding-inline: 6.25rem;

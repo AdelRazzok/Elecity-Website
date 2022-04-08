@@ -1,4 +1,3 @@
-import './Home.scss'
 import Nav from '../../src/components/Nav/Nav'
 import Hero from '../components/Hero/Hero'
 import Steps from '../components/Steps/Steps'
@@ -8,10 +7,7 @@ import Footer from '../../src/components/Footer/Footer'
 const Home: React.FC = () => {
 	return (
 		<div className="Home">
-			<div className="Home-bg">
-				<Nav />
-				<Hero />
-			</div>
+			<Hero />
 			<Steps />
 
 			{/* <Map /> */}

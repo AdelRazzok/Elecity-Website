@@ -2,7 +2,9 @@ import Nav from '../components/Nav/Nav'
 
 const Rent = () => {
 	return (
-		<Nav />
+		<>
+			Rent
+		</>
 	)
 }
 export default Rent
