@@ -6,19 +6,19 @@ import moveStep from '../../assets/img/moveStep.png'
 export default [
 	{
 		id: 1,
-		title: "Adhérer",
+		title: "Adhérez",
 		text: "Inscrivez-vous depuis le site web ou l'application mobile.",
 		svg: signUpStep,
 	},
 	{
 		id: 2,
-		title: "Sélectionner",
+		title: "Sélectionnez",
 		text: "Choisissez l'offre qui vous convient le mieux.",
 		svg: offerStep,
 	},
 	{
 		id: 3,
-		title: "Bouger",
+		title: "Bougez",
 		text: "Rendez-vous au parc le plus proche de vous et profitez de votre véhicule 100% électrique.",
 		svg: moveStep,
 	},
