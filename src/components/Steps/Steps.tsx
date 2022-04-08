@@ -8,8 +8,9 @@ const Introduction: React.FC = () => {
 		return (
 			<Step
 				key={step.id}
-				id={step.id}
+				title={step.title}
 				text={step.text}
+				svg={step.svg}
 			/>
 		) 
 	})

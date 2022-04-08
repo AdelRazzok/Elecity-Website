@@ -1,18 +1,19 @@
 import './Step.scss'
 
 interface Props {
-	id: number
+	title: string
 	text: string
+	svg: string
 }
 
-const Step: React.FC<Props> = ({ id, text }) => {
+const Step: React.FC<Props> = ({ title, text, svg }) => {
   return (
 	<div className='Step'>
 		<div className="Step-wrapper">
-			<p>SVG</p>
-			<p>{text}</p>
+			<img src={svg} alt="Logo étape" />
+			<p>{title}</p>
 		</div>
-		<span>{id}.</span>
+		<span>{text}</span>
 	</div>
   )
 }
