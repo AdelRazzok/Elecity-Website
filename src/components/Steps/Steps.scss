@@ -21,11 +21,11 @@
 
 	&-container {
 		@extend %flex-center;
+		align-items: start;
 		flex-wrap: wrap;
 		gap: 5rem;
 		margin-top: 5rem;
 		@include breakpoint-up(large) {
-			gap: 3rem;
 			margin-top: 6rem;
 		}
 	}
