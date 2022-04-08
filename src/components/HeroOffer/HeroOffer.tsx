@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './HeroOffer.scss'
 import { OfferInterface } from '../Hero/Hero'
 import Button from '../Button/Button'
+import { motion } from 'framer-motion'
 
 import plug from '../../assets/img/plug.png'
 import brandLogo from '../../assets/svg/peugeot.svg'
