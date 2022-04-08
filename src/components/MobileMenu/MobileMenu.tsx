@@ -43,7 +43,14 @@ const MobileMenu: React.FC<Props> = ({ handleClose }) => {
 			animate='visible'
 			exit='exit'
 		>
-			<button type='button' id='mobilemenu-close' className='MobileMenu-close-btn' onClick={handleClose}>X</button>
+			<button
+				type='button'
+				id='mobilemenu-close'
+				className='MobileMenu-close-btn'
+				onClick={handleClose}
+			>
+				X
+			</button>
 			<div className="MobileMenu-links">
 				<a href="#" className='link'>Accueil</a>
 				<a href="#" className='link'>Location</a>

@@ -14,7 +14,6 @@ const Home: React.FC = () => {
 			</div>
 			<Steps />
 
-			<hr />
 			{/* <Map /> */}
 			{/* <Footer /> */}
 		</div>
