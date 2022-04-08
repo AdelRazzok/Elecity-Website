@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react'
+import { Link } from 'react-router-dom'
 import './Button.scss'
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({ link, text, styles }) => {
 	return (
-		<a href={link} className='Button' style={styles}>{text}</a>
+		<Link to={link} className='Button' style={styles}>{text}</Link>
 	)
 } 
 export default Button

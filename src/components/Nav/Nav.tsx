@@ -5,6 +5,7 @@ import MobileMenu from '../MobileMenu/MobileMenu'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { FaStream } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
@@ -25,11 +26,11 @@ const Nav: React.FC = () => {
 			<nav className='Nav'>
 				<img src={logo} alt='Logo Elecity' className='Nav-logo' />
 				<div className="Nav-links">
-					<a href="#" className='link'>Accueil</a>
-					<a href="#" className='link'>Location</a>
-					<a href="#" className='link'>F.A.Q</a>
-					<a href="#" className='link'>S'enregistrer</a>
-					<Button link='#' text='Connexion' />
+					<Link to="/" className='link'>Accueil</Link>
+					<Link to="rent" className='link'>Location</Link>
+					<Link to="faq" className='link'>F.A.Q</Link>
+					<Link to="register" className='link'>S'enregistrer</Link>
+					<Button link='login' text='Connexion' />
 				</div>
 				<div className="Nav-mobile">
 					<button
