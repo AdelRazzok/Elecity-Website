@@ -1,29 +1,20 @@
-import signUp from '../../assets/svg/signUp.svg'
-import signUp2 from '../../assets/svg/signUp2.svg'
-
 export default [
 	{
 		id: 1,
-		title: "Titre",
+		title: "Adhérer",
 		text: "Inscrivez-vous depuis le site ou l'appli mobile.",
-		svg: signUp,
+		svg: '#'
 	},
 	{
 		id: 2,
-		title: "Titre",
+		title: "Selectionner",
 		text: "Choisissez l'offre qui vous convient.",
-		svg: signUp2,
+		svg: '#'
 	},
 	{
 		id: 3,
-		title: "Titre",
-		text: "Rendez-vous au parc le plus proche de vous.",
-		svg: signUp,
+		title: "Bouger",
+		text: "Rendez-vous au parc le plus proche de vous et profitez de votre véhicule 100% électrique.",
+		svg: '#'
 	},
-	{
-		id: 4,
-		title: "Titre",
-		text: "Profitez de votre véhicule 100% éléctrique.",
-		svg: signUp2,
-	}
 ]

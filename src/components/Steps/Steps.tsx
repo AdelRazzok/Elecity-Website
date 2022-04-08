@@ -8,16 +8,16 @@ const Introduction: React.FC = () => {
 		return (
 			<Step
 				key={step.id}
+				svg={step.svg}
 				title={step.title}
 				text={step.text}
-				svg={step.svg}
 			/>
 		) 
 	})
 
 	return (
 		<section className="Steps">
-			<h1 className="Steps-title">...EN SEULEMENT 4 ÉTAPES</h1>
+			<h1 className="Steps-title">...EN SEULEMENT 3 ÉTAPES</h1>
 			<div className="Steps-container">
 				{stepsList}
 			</div>
