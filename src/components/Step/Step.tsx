@@ -9,8 +9,8 @@ const Step: React.FC<Props> = ({ id, text }) => {
   return (
 	<div className='Step'>
 		<div className="Step-wrapper">
+			<p>SVG</p>
 			<p>{text}</p>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, porro.</p>
 		</div>
 		<span>{id}.</span>
 	</div>

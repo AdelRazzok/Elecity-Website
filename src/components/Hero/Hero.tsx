@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="Hero">
-      <h1>LOUEZ PROPRE ET LOCAL <span>EN TOUTE FACILITÉ</span></h1>
+      <h1>LOUEZ PROPRE ET LOCAL <span>EN TOUTE FACILITÉ...</span></h1>
       <p>Profitez d’une offre de location de véhicule 100% électrique à la minute et parcourez librement votre ville</p>
       <div className="Hero-offers">
         {rederedOffers ?? 'loading ...'}

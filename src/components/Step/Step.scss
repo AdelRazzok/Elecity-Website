@@ -31,10 +31,7 @@
 		font-weight: 500;
 	}
 
-
 	@include breakpoint-up(large) {
-		& {
-			width: 20%;
-		}
+		width: 20%;
 	}
 }
