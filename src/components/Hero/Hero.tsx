@@ -49,8 +49,9 @@ const Hero: React.FC = () => {
   const [offers, setOffers] = useState<OfferInterface[]>([])
 
   useEffect(() => {
-    DUMMY_OFFERS[0].active = true
-    setOffers(DUMMY_OFFERS)
+    const data = DUMMY_OFFERS.map(offer => ({ ...offer, active: false }))
+    data[0].active = true
+    setOffers(data)
   }, [])
 
   const toggleActiveOnOffer = (id: number) => {
