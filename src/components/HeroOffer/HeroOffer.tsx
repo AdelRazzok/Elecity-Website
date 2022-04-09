@@ -13,7 +13,6 @@ interface Props {
 }
 
 const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
-
   
   let offerInfosRef = useRef<HTMLElement[] | []>([]);
 
