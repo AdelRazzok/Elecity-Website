@@ -4,11 +4,11 @@ import Step from '../Step/Step'
 
 const Introduction: React.FC = () => {
 
-	const stepsList = stepsData.map(step => {
+	const stepsList = stepsData.map((step, i) => {
 		return (
 			<Step
 				key={step.id}
-				id={step.id}
+				id={i}
 				svg={step.svg}
 				title={step.title}
 				text={step.text}

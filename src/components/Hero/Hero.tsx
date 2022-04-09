@@ -62,9 +62,9 @@ const Hero: React.FC = () => {
     }))
   }
 
-  const rederedOffers = offers?.map(offer => {
+  const rederedOffers = offers?.map((offer, i) => {
     return (
-      <HeroOffer key={offer.id} offer={offer} toggleActiveOnOffer={toggleActiveOnOffer} />
+      <HeroOffer key={offer.id} offer={offer} id={i} toggleActiveOnOffer={toggleActiveOnOffer} />
     )
   })
 

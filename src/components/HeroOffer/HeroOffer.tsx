@@ -9,10 +9,11 @@ import brandLogo from '../../assets/svg/peugeot.svg'
 
 interface Props {
   offer: OfferInterface;
+  id: number;
   toggleActiveOnOffer: (id: number) => void;
 }
 
-const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
+const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) => {
 
   let offerInfosRef = useRef<HTMLElement[] | []>([]);
 
@@ -47,7 +48,7 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
       right: '-5px',
       duration: .4,
       ease: 'power3.easeOut',
-      delay: `0.${offer.id}`,
+      delay: `0.${id}`,
       clearProps: 'right'
     })
   }, [])
