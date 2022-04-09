@@ -13,7 +13,7 @@ interface Props {
 }
 
 const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
-  
+
   let offerInfosRef = useRef<HTMLElement[] | []>([]);
 
   useLayoutEffect(() => {
@@ -22,14 +22,7 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
     gsap.fromTo(offerInfosRef.current!, {
       opacity: 0,
       y: '-100%',
-      // duration: .2,
-      // ease: 'power1.easeOut',
-      // delay: 0.2,
-      // stagger: {
-      //   amount: .5,
-      // },
-    },
-    {
+    }, {
       opacity: 1,
       y: '0%',
       duration: .2,
@@ -43,6 +36,22 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
 
   }, [offer.active])
 
+  let carImgsRef = useRef<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
+    gsap.fromTo(carImgsRef.current!, {
+      opacity: 0,
+      right: '-100%',
+    },{
+      opacity: 1,
+      right: '-5px',
+      duration: .4,
+      ease: 'power3.easeOut',
+      delay: `0.${offer.id}`,
+      clearProps: 'right'
+    })
+  }, [])
+
   const handleClick = () => {
     toggleActiveOnOffer(offer.id)
   }
@@ -51,7 +60,7 @@ const HeroOffer: React.FC<Props> = ({ offer, toggleActiveOnOffer }: Props) => {
     <>
       <div onClick={handleClick} className={`HeroOffer ${offer.active ? 'active' : ''}`} >
 
-        <img src={offer.img} className="HeroOffer-img" />
+        <img src={offer.img} className="HeroOffer-img" ref={el => carImgsRef.current = el} />
 
         <div ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-head">
           {offer.active && <img src={brandLogo} />}
