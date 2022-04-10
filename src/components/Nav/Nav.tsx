@@ -27,7 +27,7 @@ const Nav: React.FC = () => {
 				<img src={logo} alt='Logo Elecity' className='Nav-logo' />
 				<div className="Nav-links">
 					<Link to="/" className='link'>Accueil</Link>
-					<Link to="rent" className='link'>Location</Link>
+					<Link to="location" className='link'>Location</Link>
 					<Link to="faq" className='link'>F.A.Q</Link>
 					<Link to="register" className='link'>S'enregistrer</Link>
 					<Button link='login' text='Connexion' />

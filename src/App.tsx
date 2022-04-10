@@ -7,17 +7,17 @@ import {
 import Nav from './components/Nav/Nav'
 import Home from './Home/Home'
 import Register from './Register/Register'
-import Rent from './Rent/Rent'
+import Location from './Location/Location'
 import './styles/globals.scss'
 
 const App: React.FC = () => {
   return (
     <Router>
-	  <Nav />
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-		<Route path="rent" element={<Rent />} />
-		<Route path='register' element={<Register />} />
+        <Route path="location" element={<Location />} />
+        <Route path='register' element={<Register />} />
       </Routes>
     </Router>
   )

@@ -1,10 +1,10 @@
 import Nav from '../components/Nav/Nav'
 
-const Rent = () => {
+const Location = () => {
 	return (
 		<>
-			Rent
+			Location
 		</>
 	)
 }
-export default Rent
+export default Location

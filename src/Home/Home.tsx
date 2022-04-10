@@ -1,4 +1,3 @@
-import Nav from '../../src/components/Nav/Nav'
 import Hero from '../components/Hero/Hero'
 import Steps from '../components/Steps/Steps'
 import Map from '../../src/components/Map/Map'
