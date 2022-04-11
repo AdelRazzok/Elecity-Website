@@ -28,9 +28,9 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
       y: '0%',
       duration: .2,
       ease: 'power1.easeOut',
-      delay: 0.2,
+      delay: 0.1,
       stagger: {
-        amount: .5,
+        amount: -.15,
       },
       clearProps: 'scale'
     })

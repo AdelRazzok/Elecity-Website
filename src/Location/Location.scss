@@ -9,7 +9,13 @@
     &::before {
       position: absolute;
       content: '';
-      top: -160px;
+      top: -100px;
+      @include breakpoint-up(medium) {
+        top: -120px;
+      }
+      @include breakpoint-up(large) {
+        top: -160px;
+      }
       left: 0;
       right: 0;
       bottom: 0;
@@ -20,10 +26,15 @@
     // padding-block-start: 12.5rem;
     padding-block-start: 9.375rem;
     padding-block-end: 1.875rem;
+    // padding-block-start: 4rem;
+    // padding-block-end: 1rem;
 
     &-title {
       margin: 0;
-      padding-inline: 8.75rem;
+      padding-inline: 2rem;
+      @include breakpoint-up(large) {
+        padding-inline: 8.75rem;
+      }
       font-family: $fontOswald;
       font-size: $fontSizeLarge;
       font-weight: 500;
