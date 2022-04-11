@@ -1,5 +1,6 @@
 import './MobileMenu.scss'
 import Button from '../Button/Button'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 interface Props {
@@ -52,10 +53,10 @@ const MobileMenu: React.FC<Props> = ({ handleClose }) => {
 				X
 			</button>
 			<div className="MobileMenu-links">
-				<a href="#" className='link'>Accueil</a>
-				<a href="#" className='link'>Location</a>
-				<a href="#" className='link'>F.A.Q</a>
-				<a href="#" className='link'>S'enregistrer</a>
+				<Link to="/" className='link'>Accueil</Link>
+				<Link to="location" className='link'>Location</Link>
+				<Link to="faq" className='link'>F.A.Q</Link>
+				<Link to="register" className='link'>S'enregistrer</Link>
 				<Button link='#' text='Connexion' />
 			</div>
 		</motion.div>

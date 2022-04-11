@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import './HeroOffer.scss'
 import { OfferInterface } from '../Hero/Hero'
 import Button from '../Button/Button'

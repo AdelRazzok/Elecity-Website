@@ -1,0 +1,33 @@
+@import '../styles/variables.scss';
+@import '../styles/placeholders.scss';
+@import '../styles/mixins.scss';
+
+.Location {
+  
+  &-hero {
+    position: relative;
+    &::before {
+      position: absolute;
+      content: '';
+      top: -160px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient($darkSilver, $lightSilver, $darkSilver);
+      z-index: -1;
+    }
+    
+    // padding-block-start: 12.5rem;
+    padding-block-start: 9.375rem;
+    padding-block-end: 1.875rem;
+
+    &-title {
+      margin: 0;
+      padding-inline: 8.75rem;
+      font-family: $fontOswald;
+      font-size: $fontSizeLarge;
+      font-weight: 500;
+    }
+  }
+
+}
