@@ -50,7 +50,6 @@
   
   &:hover {
     @include breakpoint-up(large){
-      // height: 180px;
       width: 240px;
     }
     transition: $transitionInOut;
