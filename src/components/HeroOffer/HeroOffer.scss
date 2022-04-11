@@ -41,7 +41,7 @@
       opacity: 0.5;
       background-image: linear-gradient(to right, white, transparent);
       transform: skew(-52deg);
-      transition: ease-in-out 0.5s ;
+      transition: ease 0.5s ;
     }
     &::after {
       left: -100%;
