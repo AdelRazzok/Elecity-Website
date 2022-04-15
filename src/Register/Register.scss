@@ -1,0 +1,13 @@
+@import '../styles/variables.scss';
+@import '../styles/globals.scss';
+@import '../styles/placeholders.scss';
+
+.Register {
+
+	&-form {
+		@extend %flex-center;
+		flex-direction: column;
+		gap: 1rem;
+		margin-top: 5rem;
+	}
+}
