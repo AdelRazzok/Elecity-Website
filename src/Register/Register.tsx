@@ -4,12 +4,33 @@ import { useState } from 'react'
 const Register: React.FC = () => {
 
 	interface State {
-		username: String
+		firstName: String
+		lastName: String
+		address: {
+			street: String
+			zipcode: Number
+			city: String
+		}
+		birthDate: String
+		phone: String
+		mail: String
 		password: String
+		role: String
 	}
+
 	const [formData, setFormData] = useState<State>({
-		username: "",
-		password: ""
+		firstName: "",
+		lastName: "",
+		address: {
+			street: "",
+			zipcode: 0,
+			city: "",
+		},
+		birthDate: "",
+		phone: "",
+		mail: "",
+		password: "",
+		role: "",
 	})
 
 	const handleChange = (event: any) => {
@@ -26,22 +47,83 @@ const Register: React.FC = () => {
 	return (
 		<div className='Register'>
 			<div className="Register-form">
-				<label htmlFor="username">Nom d'utilisateur :</label>
-				<input
-					type="text"
-					className='Register-form-input'
-					id='username'
-					name='username'
-					onChange={handleChange}
-				/>
-				<label htmlFor="password">Mot de passe :</label>
-				<input
-					type="password"
-					className='Register-form-input'
-					id='password'
-					name='password'
-					onChange={handleChange}
-				/>
+				<div className="Register-form-group">
+					<label htmlFor="firstName">Prénom :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='firstName'
+						name='firstName'
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="lastName">Nom :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='lastName'
+						name='lastName'
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="address">Adresse :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='address'
+						name='address'
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="birthDate">Date de naissance :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='birthDate'
+						name='birthDate'
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="phone">Téléphone :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='phone'
+						name='phone'
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="mail">E-mail :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='mail'
+						name='mail'
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="password">Mot de passe :</label>
+					<input
+						type="password"
+						className='Register-form-input'
+						id='password'
+						name='password'
+						onChange={handleChange}
+					/>
+				</div>
+
 				<button
 					type='button'
 					className='Register-form-button'
