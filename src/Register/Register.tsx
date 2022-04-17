@@ -1,9 +1,9 @@
 import './Register.scss'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const Register: React.FC = () => {
 
-	interface State {
+	interface userSchema {
 		firstName: String
 		lastName: String
 		address: {
@@ -18,7 +18,7 @@ const Register: React.FC = () => {
 		role: String
 	}
 
-	const [formData, setFormData] = useState<State>({
+	const [formData, setFormData] = useState<userSchema>({
 		firstName: "",
 		lastName: "",
 		address: {
@@ -33,7 +33,7 @@ const Register: React.FC = () => {
 		role: "",
 	})
 
-	const handleChange = (event: any) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
 		setFormData(prev => {
 			return {
@@ -41,7 +41,16 @@ const Register: React.FC = () => {
 				[name]: value
 			}
 		})
-		console.log(formData)
+	}
+
+	const firstNameRgx = /^[a-z ,.'-]+$/i
+	const checkInput = (event: any) => {
+		const { value } = event.target
+		if (value.match(firstNameRgx)) {
+			event.target.classList.remove('invalid')
+		} else {
+			event.target.classList.add('invalid')
+		}
 	}
 
 	return (
@@ -55,6 +64,7 @@ const Register: React.FC = () => {
 						id='firstName'
 						name='firstName'
 						onChange={handleChange}
+						onBlur={checkInput}
 					/>
 				</div>
 
