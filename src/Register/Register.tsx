@@ -1,61 +1,97 @@
 import './Register.scss'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Register: React.FC = () => {
 
 	interface userSchema {
-		firstName: String
-		lastName: String
-		address: {
-			street: String
-			zipcode: Number
-			city: String
-		}
-		birthDate: String
-		phone: String
-		mail: String
-		password: String
-		role: String
+		firstName?: String
+		lastName?: String
+		street?: String
+		zipcode?: String
+		city?: String
+		birthDate?: String
+		phone?: String
+		mail?: String
+		password?: String
 	}
 
-	const [formData, setFormData] = useState<userSchema>({
+	const [formValues, setFormValues] = useState<userSchema>({
 		firstName: "",
 		lastName: "",
-		address: {
-			street: "",
-			zipcode: 0,
-			city: "",
-		},
+		street: "",
+		zipcode: "",
+		city: "",
 		birthDate: "",
 		phone: "",
 		mail: "",
 		password: "",
-		role: "",
 	})
+	const [formErrors, setFormErrors] = useState<userSchema>({})
+	const [isSubmit, setIsSubmit] = useState(false)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target
-		setFormData(prev => {
+		setFormValues(prev => {
 			return {
 				...prev,
 				[name]: value
 			}
 		})
 	}
-
-	const firstNameRgx = /^[a-z ,.'-]+$/i
-	const checkInput = (event: any) => {
-		const { value } = event.target
-		if (value.match(firstNameRgx)) {
-			event.target.classList.remove('invalid')
-		} else {
-			event.target.classList.add('invalid')
-		}
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+		setFormErrors(checkFormValues(formValues))
+		setIsSubmit(true)
 	}
 
+	useEffect(() => {
+		if (Object.keys(formErrors).length === 0 && isSubmit) {
+			console.log(formValues)
+		}
+	}, [formErrors])
+
+	const checkFormValues = (values: userSchema) => {
+		const errors: any = {}
+		const emptyErrMsg = 'Champ requis'
+
+		if (!values.firstName) {
+			errors.firstName = emptyErrMsg
+		} 
+		if (!values.lastName) {
+			errors.lastName = emptyErrMsg
+		}
+		if (!values.street) {
+			errors.street = emptyErrMsg
+		}
+		if (!values.zipcode) {
+			errors.zipcode = emptyErrMsg
+		}
+		if (!values.city) {
+			errors.city = emptyErrMsg
+		}
+		if (!values.birthDate) {
+			errors.birthDate = emptyErrMsg
+		}
+		if (!values.phone) {
+			errors.phone = emptyErrMsg
+		}
+		if (!values.mail) {
+			errors.mail = emptyErrMsg
+		}
+		if (!values.password) {
+			errors.password = emptyErrMsg
+		}
+
+		return errors
+	}
+	
 	return (
-		<div className='Register'>
-			<div className="Register-form">
+		<section className='Register'>
+			<div className="Register-hero">
+					<h1 className="Location-hero-title">S'ENREGISTRER</h1>
+			</div>
+
+			<form className="Register-form" onSubmit={handleSubmit}>
 				<div className="Register-form-group">
 					<label htmlFor="firstName">Prénom :</label>
 					<input
@@ -64,8 +100,8 @@ const Register: React.FC = () => {
 						id='firstName'
 						name='firstName'
 						onChange={handleChange}
-						onBlur={checkInput}
 					/>
+					<p className='error-msg'>{formErrors.firstName}</p>
 				</div>
 
 				<div className="Register-form-group">
@@ -77,17 +113,39 @@ const Register: React.FC = () => {
 						name='lastName'
 						onChange={handleChange}
 					/>
+					<p className='error-msg'>{formErrors.lastName}</p>
 				</div>
 
 				<div className="Register-form-group">
-					<label htmlFor="address">Adresse :</label>
+					<label htmlFor="street">Adresse :</label>
 					<input
 						type="text"
 						className='Register-form-input'
-						id='address'
-						name='address'
+						id='street'
+						name='street'
 						onChange={handleChange}
 					/>
+					<p className='error-msg'>{formErrors.street}</p>
+
+					<label htmlFor="zipcode">Code postal :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='zipcode'
+						name='zipcode'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.zipcode}</p>
+
+					<label htmlFor="city">Ville :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='city'
+						name='city'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.city}</p>
 				</div>
 
 				<div className="Register-form-group">
@@ -99,6 +157,7 @@ const Register: React.FC = () => {
 						name='birthDate'
 						onChange={handleChange}
 					/>
+					<p className='error-msg'>{formErrors.birthDate}</p>
 				</div>
 
 				<div className="Register-form-group">
@@ -110,6 +169,7 @@ const Register: React.FC = () => {
 						name='phone'
 						onChange={handleChange}
 					/>
+					<p className='error-msg'>{formErrors.phone}</p>
 				</div>
 
 				<div className="Register-form-group">
@@ -121,6 +181,7 @@ const Register: React.FC = () => {
 						name='mail'
 						onChange={handleChange}
 					/>
+					<p className='error-msg'>{formErrors.mail}</p>
 				</div>
 
 				<div className="Register-form-group">
@@ -132,16 +193,12 @@ const Register: React.FC = () => {
 						name='password'
 						onChange={handleChange}
 					/>
+					<p className='error-msg'>{formErrors.password}</p>
 				</div>
 
-				<button
-					type='button'
-					className='Register-form-button'
-				>
-					Valider
-				</button>
-			</div>
-		</div>
+				<button className='Register-form-button'>Valider</button>
+			</form>
+		</section>
 	)
 }
 export default Register
