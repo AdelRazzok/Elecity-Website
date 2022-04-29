@@ -1,5 +1,5 @@
 import './Register.scss'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Register: React.FC = () => {
@@ -16,17 +16,7 @@ const Register: React.FC = () => {
 		password?: string
 	}
 
-	const [formValues, setFormValues] = useState<userSchema>({
-		firstName: "",
-		lastName: "",
-		street: "",
-		zipcode: "",
-		city: "",
-		birthDate: "",
-		phone: "",
-		mail: "",
-		password: "",
-	})
+	const [formValues, setFormValues] = useState<userSchema>({})
 	const [formErrors, setFormErrors] = useState<userSchema>({})
 	const [isSubmit, setIsSubmit] = useState(false)
 
@@ -103,6 +93,34 @@ const Register: React.FC = () => {
 		return errors
 	}
 	
+	useEffect(() => {
+		if (Object.keys(formErrors).length === 0 && isSubmit) {
+			const user = {
+				first_name: formValues.firstName,
+				last_name: formValues.lastName,
+				address: {
+					street: formValues.street,
+					zipcode: formValues.zipcode,
+					city: formValues.city
+				},
+				birth_date: formValues.birthDate,
+				phone: formValues.phone,
+				mail: formValues.mail,
+				password: formValues.password,
+				role: 'user'
+			}
+			const settings = {
+				method: 'POST',
+				body: JSON.stringify(user),
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${process.env.REACT_APP_JWT_BEARER}`
+				}
+			}
+			fetch('https://elecity-api.herokuapp.com/api/v1/users', settings)
+		}
+	}, [formErrors])
+
 	if (Object.keys(formErrors).length === 0 && isSubmit) {
 		return (
 			<div>
