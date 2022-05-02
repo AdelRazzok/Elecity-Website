@@ -1,15 +1,14 @@
 import './Location.scss'
-import React from "react"
+import React, { useEffect, useState } from "react"
+import LocationHero from '../components/LocationHero/LocationHero';
+import LocationMain from '../components/LocationMain/LocationMain';
 
 const Location: React.FC = () => {
+	
 	return (
 		<section className="Location">
-			<div className="Location-hero">
-				<h1 className="Location-hero-title">LOCATION BLABLABLABLA</h1>
-			</div>
-			<main className="Location-main">
-
-			</main>
+			<LocationHero />
+			<LocationMain />
 		</section>
 	)
 }

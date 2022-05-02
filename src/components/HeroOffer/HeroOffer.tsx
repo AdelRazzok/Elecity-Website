@@ -76,7 +76,7 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
         <div className="HeroOffer-body">
           <div className="HeroOffer-body-info">
             <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-body-info-model">{`Peugeot ${offer.model}`}</span>
-            {offer.active && <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-body-info-traits">{offer.traits.join(' • ')}</span>}
+            {offer.active && <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-body-info-specs">{offer.specs.join(' • ')}</span>}
             {offer.active && <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-body-info-price"><em>{offer.price}</em><em> €</em> /heure</span>}
             {offer.active && <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }}><Button styles={{ paddingInline: '2.1875rem' }} link="#" text="Louer" /></span>}
           </div>

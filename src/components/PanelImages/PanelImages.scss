@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+@import "../../styles/placeholders.scss";
+@import "../../styles/mixins.scss";
+
+.PanelImages {
+  height: 100px;
+  width: 100%;
+
+  @include breakpoint-up(large) {
+    width: 30%;
+  }
+
+  .swiper {
+    height: 100%;
+    padding-block: 1rem;
+
+    &-slide {
+      @extend %flex-center;
+      height: 100%;
+      
+      img {
+        height: 80%;
+      }
+    }
+
+    
+  }
+}

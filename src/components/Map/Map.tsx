@@ -7,14 +7,14 @@ import imgTest from '../../assets/png/imageMap.png'
 
 
 
-const Map = () => {
-    return (
-        <div className="Map">
-        <div className="Map-display">
-            <img src={imgTest} alt="mapAlt"></img>
-        </div>
-        </div>
-    )
+const Map:React.FC = () => {
+  return (
+    <div className="Map">
+      <div className="Map-display">
+        {/* <img src={imgTest} alt="mapAlt"></img> */}
+      </div>
+    </div>
+  )
 }
 
 export default Map

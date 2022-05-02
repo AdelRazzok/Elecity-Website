@@ -1,8 +1,15 @@
+@import '../../styles/variables.scss';
+@import '../../styles/placeholders.scss';
+@import '../../styles/mixins.scss';
+
 .Map{
-    text-align:center;
-    width: 20em;
-    height: 20em;
-    border: 1px solid red;
-    margin: auto;
-    margin-top: 10em;
+    &-display {
+        margin-inline: auto;
+        max-width: 1200px;
+        height: 300px;
+        @include breakpoint-up(medium) {
+            height: 500px;
+        }
+        background-color: $lightContrast;
+    }
 }

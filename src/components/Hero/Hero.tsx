@@ -11,7 +11,7 @@ export interface OfferInterface {
   id: number;
   type: string;
   model: string;
-  traits: string[];
+  specs: string[];
   price: string;
   img: string;
 }
@@ -22,7 +22,7 @@ const DUMMY_OFFERS: OfferInterface[]
       id: 1,
       type: 'Citadine',
       model: 'e-208',
-      traits: ['Electrique', 'Automatique', '5 places'],
+      specs: ['Electrique', 'Automatique', '5 places'],
       price: '7',
       img: citadine,
     },
@@ -30,7 +30,7 @@ const DUMMY_OFFERS: OfferInterface[]
       id: 2,
       type: 'SUV',
       model: 'e-2008',
-      traits: ['Electrique', 'Automatique', '5 places'],
+      specs: ['Electrique', 'Automatique', '5 places'],
       price: '11',
       img: suv,
     },
@@ -38,7 +38,7 @@ const DUMMY_OFFERS: OfferInterface[]
       id: 3,
       type: 'Combispace',
       model: 'e-Rifter',
-      traits: ['Electrique', 'Automatique', '7 places'],
+      specs: ['Electrique', 'Automatique', '7 places'],
       price: '13',
       img: combispace,
     }
