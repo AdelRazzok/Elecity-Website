@@ -1,6 +1,7 @@
 import './Register.scss'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import bcrypt from 'bcryptjs'
 
 const Register: React.FC = () => {
 
@@ -92,6 +93,16 @@ const Register: React.FC = () => {
 		}
 		return errors
 	}
+
+	const encryptPwd = (password: string | undefined) => {
+		try {
+			let salt = bcrypt.genSaltSync(10)
+			let hash = bcrypt.hashSync(password, salt)
+			return hash
+		} catch (err) {
+			console.log(err)
+		}
+	}
 	
 	useEffect(() => {
 		if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -106,7 +117,7 @@ const Register: React.FC = () => {
 				birth_date: formValues.birthDate,
 				phone: formValues.phone,
 				mail: formValues.mail,
-				password: formValues.password,
+				password: encryptPwd(formValues.password),
 				role: 'user'
 			}
 			const settings = {
@@ -132,7 +143,7 @@ const Register: React.FC = () => {
 		return (	
 			<section className='Register'>
 				<div className="Register-hero">
-						<h1 className="Location-hero-title">S'ENREGISTRER</h1>
+						<h1 className="Register-hero-title">S'ENREGISTRER</h1>
 				</div>
 	
 				<form className="Register-form" onSubmit={handleSubmit}>
