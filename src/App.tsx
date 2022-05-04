@@ -8,6 +8,7 @@ import Nav from './components/Nav/Nav'
 import Home from './Home/Home'
 import Register from './Register/Register'
 import Location from './Location/Location'
+import Login from './Login/Login'
 import './styles/globals.scss'
 
 const App: React.FC = () => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="location" element={<Location />} />
         <Route path='register' element={<Register />} />
+		<Route path='login' element={<Login />} />
       </Routes>
     </Router>
   )

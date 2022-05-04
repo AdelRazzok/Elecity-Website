@@ -143,7 +143,7 @@ const Register: React.FC = () => {
 		return (	
 			<section className='Register'>
 				<div className="Register-hero">
-						<h1 className="Register-hero-title">S'ENREGISTRER</h1>
+					<h1 className="Register-hero-title">S'ENREGISTRER</h1>
 				</div>
 	
 				<form className="Register-form" onSubmit={handleSubmit}>
