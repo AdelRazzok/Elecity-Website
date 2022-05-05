@@ -1,8 +1,12 @@
 @import '../../styles/variables.scss';
 @import '../../styles/placeholders.scss';
 @import '../../styles/mixins.scss';
+@import '../../styles/globals.scss';
 
-.Map{
+
+.map{
+
+    border-radius: 10px;
     &-display {
         margin-inline: auto;
         max-width: 1200px;
@@ -12,4 +16,33 @@
         }
         background-color: $lightContrast;
     }
+
+    &--container{
+        background-color: $lightContrast;
+    }
+    &--img{
+        border-radius: 20px;
+        width: 70%;
+        margin-bottom: 3rem;
+    }
+    &--block{
+
+        @extend %flex-center;
+        padding : 1rem;
+     }
+
+     &--title{
+        text-align: center;
+        font-size: $fontSizeMedium;
+        font-weight: bold;
+        padding: 3rem;
+     }
 }
+
+
+
+
+
+
+
+

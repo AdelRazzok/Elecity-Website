@@ -1,17 +1,14 @@
 import React from 'react';
 import './Map.scss';
-import imgTest from '../../assets/png/imageMap.png'
+import imgTest from '../../assets/img/lhMap.png'
 
-
-
-
-
-
-const Map:React.FC = () => {
+const Map: React.FC = () => {
   return (
-    <div className="Map">
-      <div className="Map-display">
-        {/* <img src={imgTest} alt="mapAlt"></img> */}
+    <div className="map--container">
+
+      <div className="map--title">RETROUVEZ NOUS PRES DE CHEZ VOUS</div>
+      <div className="map--block">
+        <img src={imgTest} alt="mapAlt" className="map--img"></img>
       </div>
     </div>
   )

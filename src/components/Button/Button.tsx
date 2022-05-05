@@ -14,3 +14,4 @@ const Button: React.FC<Props> = ({ link, text, styles }) => {
 	)
 } 
 export default Button
+
