@@ -50,6 +50,7 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const data = DUMMY_OFFERS.map(offer => ({ ...offer, active: false }))
+    
     data[0].active = true
     setOffers(data)
   }, [])

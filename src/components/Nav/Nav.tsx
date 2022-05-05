@@ -11,7 +11,7 @@ const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
 
 	const bodyEl = document.getElementsByTagName('body')[0]
-
+	
 	const openMenu = () => {
 		bodyEl.style.overflow = 'hidden'
 		setShowMenu(true)
@@ -50,3 +50,5 @@ const Nav: React.FC = () => {
 	)
 }
 export default Nav
+
+
