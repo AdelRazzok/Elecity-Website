@@ -2,69 +2,86 @@ import { useState, useEffect } from 'react'
 import HeroOffer from '../HeroOffer/HeroOffer';
 import './Hero.scss'
 
-import citadine from '../../assets/img/citadine.png'
-import suv from '../../assets/img/suv.png'
-import combispace from '../../assets/img/combispace.png'
-
 export interface OfferInterface {
   active?: boolean;
-  id: number;
-  type: string;
-  model: string;
-  specs: string[];
-  price: string;
-  img: string;
+  _id: string;
+  offer_name: string;
+  offer_model: string;
+  offer_specs: {
+    engine: string;
+    gearbox: string;
+    seats: number;
+    doors: number;
+    autonomy: string;
+  };
+  offer_price: {
+    hour: number;
+    day: number;
+  };
+  offer_image: {
+    main: string;
+    front: string;
+    side: string;
+    back: string;
+  };
+  offer_description: string;
+  __v?: number;
 }
 
-const DUMMY_OFFERS: OfferInterface[]
-  = [
-    {
-      id: 1,
-      type: 'Citadine',
-      model: 'e-208',
-      specs: ['Electrique', 'Automatique', '5 places'],
-      price: '7',
-      img: citadine,
-    },
-    {
-      id: 2,
-      type: 'SUV',
-      model: 'e-2008',
-      specs: ['Electrique', 'Automatique', '5 places'],
-      price: '11',
-      img: suv,
-    },
-    {
-      id: 3,
-      type: 'Combispace',
-      model: 'e-Rifter',
-      specs: ['Electrique', 'Automatique', '7 places'],
-      price: '13',
-      img: combispace,
-    }
-  ]
-
 const Hero: React.FC = () => {
+
+  const FetchOffers = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_JWT_TOKEN}`,
+      },
+    }
+
+    const res = await fetch('http://elecity-api.herokuapp.com/api/v1/offers', options)
+    const raw_data = await res.json()
+
+    const data = await raw_data.map((offer: OfferInterface) => {
+
+      // Object.keys(offer.offer_image).forEach(async (key: string) => {
+      //   const k = key as keyof OfferInterface['offer_image']
+      //   const img = offer.offer_image[k]
+
+      //   const fileData = await fetch(`http://elecity-api.herokuapp.com/api/v1/files/${img}`, options)
+      //   const blob = await fileData.blob()
+      //   const url = URL.createObjectURL(blob)
+        
+      //   offer.offer_image[k] = url
+      //   console.log(offer.offer_image[k])
+      // })
+
+      return { ...offer, active: false }
+    }).reverse()
+
+    data[0].active = true
+    setOffers(data)
+  }
 
   const [offers, setOffers] = useState<OfferInterface[]>([])
 
   useEffect(() => {
-    const data = DUMMY_OFFERS.map(offer => ({ ...offer, active: false }))
-    data[0].active = true
-    setOffers(data)
+
+    FetchOffers()
+
   }, [])
 
-  const toggleActiveOnOffer = (id: number) => {
+  const toggleActiveOnOffer = (id: string) => {
     setOffers(prevOffers => prevOffers.map(offer => {
       offer.active = false
-      if (offer.id == id) offer.active = true
+      if (offer._id == id) offer.active = true
       return offer
     }))
   }
 
   const rederedOffers = offers?.map((offer, i) => {
     return (
-      <HeroOffer key={offer.id} offer={offer} id={i} toggleActiveOnOffer={toggleActiveOnOffer} />
+      <HeroOffer key={offer._id} offer={offer} id={i} toggleActiveOnOffer={toggleActiveOnOffer} />
     )
   })
 
