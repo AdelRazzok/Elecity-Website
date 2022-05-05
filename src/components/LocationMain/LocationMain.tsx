@@ -2,33 +2,35 @@ import './LocationMain.scss'
 import React, { useState, useEffect } from 'react'
 import Map from '../Map/Map'
 import LocationPanel from '../LocationPanel/LocationPanel'
-
-export interface fData {
-	active?: boolean;
-	id: number;
-}
-
-const fakeData: fData[] = [
-	{
-		id: 1,
-	},
-	{
-		id: 2,
-	},
-	{
-		id: 3,
-	}
-]
+import { OfferInterface } from '../Hero/Hero'
 
 const LocationMain: React.FC = () => {
 
-  const [offerPanels, setOfferPanels] = useState<fData[]>([])
+  const FetchOffers = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.REACT_APP_JWT_BEARER}`,
+      },
+    }
 
-	useEffect(() => {
-		const data = fakeData.map(fData => ({ ...fData, active: false }))
-		data[0].active = true
-		setOfferPanels(data)    
-	}, [])
+    const res = await fetch('http://elecity-api.herokuapp.com/api/v1/offers', options)
+    const raw_data = await res.json()
+
+    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false })).reverse()
+
+    data[0].active = true
+    setOffers(data)
+  }
+
+  const [offers, setOffers] = useState<OfferInterface[]>([])
+
+  useEffect(() => {
+
+    FetchOffers()
+
+  }, [])
   
   return (
     <main className="LocationMain">
@@ -38,8 +40,8 @@ const LocationMain: React.FC = () => {
       </div>
       <div className="LocationMain-panels">
 
-        {offerPanels.map((offer, i) => (
-          <LocationPanel offer={offer} id={i} key={offer.id} />
+        {offers.map((offer, i) => (
+          <LocationPanel offer={offer} id={i} key={offer._id} />
         ))}
 
       </div>

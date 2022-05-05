@@ -1,13 +1,13 @@
 import './LocationPanel.scss'
 import React, { useState } from 'react'
-import { fData } from '../LocationMain/LocationMain'
+import { OfferInterface } from '../Hero/Hero'
 import PanelInfos from '../PanelInfos/PanelInfos'
 import PanelImages from '../PanelImages/PanelImages'
 import PanelPrices from '../PanelPrices/PanelPrices'
 import PanelFinal from '../PanelFinal/PanelFinal'
 
 interface Props {
-  offer: fData
+  offer: OfferInterface
   id: number
 }
 
@@ -29,7 +29,7 @@ const LocationPanels: React.FC<Props> = ({ offer, id }: Props) => {
   return (
     <div className="LocationPanel">
       <input className="titleCheckbox" defaultChecked={offer.active} type="checkbox" id={`panel${id}`} />
-      <label htmlFor={`panel${id}`}><h2>{`offre ${offer.id}`}</h2></label>
+      <label htmlFor={`panel${id}`}><h2>{`${offer.offer_name}`}</h2></label>
       <div className="LocationPanel-body">
 
         <div className="LocationPanel-body-top">

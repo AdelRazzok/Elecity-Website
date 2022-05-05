@@ -42,22 +42,7 @@ const Hero: React.FC = () => {
     const res = await fetch('http://elecity-api.herokuapp.com/api/v1/offers', options)
     const raw_data = await res.json()
 
-    const data = await raw_data.map((offer: OfferInterface) => {
-
-      // Object.keys(offer.offer_image).forEach(async (key: string) => {
-      //   const k = key as keyof OfferInterface['offer_image']
-      //   const img = offer.offer_image[k]
-
-      //   const fileData = await fetch(`http://elecity-api.herokuapp.com/api/v1/files/${img}`, options)
-      //   const blob = await fileData.blob()
-      //   const url = URL.createObjectURL(blob)
-        
-      //   offer.offer_image[k] = url
-      //   console.log(offer.offer_image[k])
-      // })
-
-      return { ...offer, active: false }
-    }).reverse()
+    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false })).reverse()
 
     data[0].active = true
     setOffers(data)
