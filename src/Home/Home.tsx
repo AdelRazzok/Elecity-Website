@@ -8,9 +8,8 @@ const Home: React.FC = () => {
 		<div className="Home">
 			<Hero />
 			<Steps />
-
-			{/* <Map /> */}
-			{/* <Footer /> */}
+			<Map />
+			<Footer />
 		</div>
 	)
 }
