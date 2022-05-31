@@ -10,7 +10,6 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^17.0.14",
-    "bcryptjs": "^2.4.3",
     "framer-motion": "^6.2.9",
     "gsap": "^3.10.2",
     "node-fetch": "^3.2.3",

@@ -1,17 +1,16 @@
-import './Nav.scss'
-import logo from '../../assets/svg/logo.svg'
-import Button from '../Button/Button'
-import MobileMenu from '../MobileMenu/MobileMenu'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { FaStream } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../App'
+import Button from '../Button/Button'
+import MobileMenu from '../MobileMenu/MobileMenu'
+import logo from '../../assets/svg/logo.svg'
+import './Nav.scss'
 
 const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
-
 	const bodyEl = document.getElementsByTagName('body')[0]
-	
 	const openMenu = () => {
 		bodyEl.style.overflow = 'hidden'
 		setShowMenu(true)
@@ -19,7 +18,9 @@ const Nav: React.FC = () => {
 	const closeMenu = () => {
 		bodyEl.style.overflow = 'auto'
 		setShowMenu(false)
-	} 
+	}
+
+	const userContext = useContext(UserContext)
 
 	return (
 		<>
@@ -30,7 +31,12 @@ const Nav: React.FC = () => {
 					<Link to="location" className='link'>Location</Link>
 					<Link to="faq" className='link'>F.A.Q</Link>
 					<Link to="register" className='link'>S'enregistrer</Link>
-					<Button link='login' text='Connexion' />
+					{
+						Object.keys(userContext).length === 0 ?
+							<Button link='login' text='Connexion' />
+						:
+							<Button link='profile' text='Mon Profil' />
+					}
 				</div>
 				<div className="Nav-mobile">
 					<button
@@ -50,5 +56,3 @@ const Nav: React.FC = () => {
 	)
 }
 export default Nav
-
-

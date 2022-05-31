@@ -1,11 +1,10 @@
-import './Register.scss'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import bcrypt from 'bcryptjs'
+import './Register.scss'
 
 const Register: React.FC = () => {
 
-	interface userSchema {
+	interface formValues {
 		firstName?: string
 		lastName?: string
 		street?: string
@@ -17,8 +16,8 @@ const Register: React.FC = () => {
 		password?: string
 	}
 
-	const [formValues, setFormValues] = useState<userSchema>({})
-	const [formErrors, setFormErrors] = useState<userSchema>({})
+	const [formValues, setFormValues] = useState<formValues>({})
+	const [formErrors, setFormErrors] = useState<formValues>({})
 	const [isSubmit, setIsSubmit] = useState(false)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,8 +35,8 @@ const Register: React.FC = () => {
 		setIsSubmit(true)
 	}
 
-	const checkFormValues = (values: userSchema) => {
-		const errors: userSchema = {}
+	const checkFormValues = (values: formValues) => {
+		const errors: formValues = {}
 		const emptyErrMsg = 'Champ requis'
 		const formatErrMsg = 'Format invalide'
 		const nameRgx = /^[a-z éèçâêîôûäëïöü,.'-]{2,20}$/i
@@ -93,16 +92,6 @@ const Register: React.FC = () => {
 		}
 		return errors
 	}
-
-	const encryptPwd = (password: string | undefined) => {
-		try {
-			let salt = bcrypt.genSaltSync(10)
-			let hash = bcrypt.hashSync(password, salt)
-			return hash
-		} catch (err) {
-			console.log(err)
-		}
-	}
 	
 	useEffect(() => {
 		if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -112,12 +101,12 @@ const Register: React.FC = () => {
 				address: {
 					street: formValues.street,
 					zipcode: formValues.zipcode,
-					city: formValues.city
+					city: formValues.city,
 				},
 				birth_date: formValues.birthDate,
 				phone: formValues.phone,
 				mail: formValues.mail,
-				password: encryptPwd(formValues.password),
+				password: formValues.password,
 				role: 'user'
 			}
 			const settings = {
@@ -125,16 +114,19 @@ const Register: React.FC = () => {
 				body: JSON.stringify(user),
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': `Bearer ${process.env.REACT_APP_JWT_BEARER}`
 				}
 			}
-			fetch('https://elecity-api.herokuapp.com/api/v1/users', settings)
+			try {
+				fetch('http://localhost:5000/api/v1/users/register', settings)
+			} catch (err) {
+				console.log(err)
+			}
 		}
 	}, [formErrors])
 
 	if (Object.keys(formErrors).length === 0 && isSubmit) {
 		return (
-			<div>
+			<div className='Register-success'>
 				<p>Inscription réussie !</p>
 				<Link to='/'>Retournez à l'accueil</Link>
 			</div>
