@@ -2,20 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Register.scss'
 
+interface formValues {
+	firstName?: string
+	lastName?: string
+	street?: string
+	zipcode?: string
+	city?: string
+	birthDate?: string
+	phone?: string
+	mail?: string
+	password?: string
+}
+
 const Register: React.FC = () => {
-
-	interface formValues {
-		firstName?: string
-		lastName?: string
-		street?: string
-		zipcode?: string
-		city?: string
-		birthDate?: string
-		phone?: string
-		mail?: string
-		password?: string
-	}
-
 	const [formValues, setFormValues] = useState<formValues>({})
 	const [formErrors, setFormErrors] = useState<formValues>({})
 	const [isSubmit, setIsSubmit] = useState(false)
@@ -124,130 +123,128 @@ const Register: React.FC = () => {
 		}
 	}, [formErrors])
 
-	if (Object.keys(formErrors).length === 0 && isSubmit) {
-		return (
-			<div className='Register-success'>
-				<p>Inscription réussie !</p>
-				<Link to='/'>Retournez à l'accueil</Link>
+	return Object.keys(formErrors).length === 0 && isSubmit ? (
+		<div className='Register-success'>
+			<p>Inscription réussie !</p>
+			<Link to='/'>Retournez à l'accueil</Link>
+		</div>
+	) : (
+		<section className='Register'>
+			<div className="Register-hero">
+				<h1 className="Register-hero-title">S'ENREGISTRER</h1>
 			</div>
-		)
-	} else {
-		return (	
-			<section className='Register'>
-				<div className="Register-hero">
-					<h1 className="Register-hero-title">S'ENREGISTRER</h1>
+
+			<form className="Register-form" onSubmit={handleSubmit}>
+				<div className="Register-form-group">
+					<label htmlFor="firstName">Prénom :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='firstName'
+						name='firstName'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.firstName}</p>
 				</div>
-	
-				<form className="Register-form" onSubmit={handleSubmit}>
-					<div className="Register-form-group">
-						<label htmlFor="firstName">Prénom :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='firstName'
-							name='firstName'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.firstName}</p>
-					</div>
-	
-					<div className="Register-form-group">
-						<label htmlFor="lastName">Nom :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='lastName'
-							name='lastName'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.lastName}</p>
-					</div>
-	
-					<div className="Register-form-group">
-						<label htmlFor="street">Adresse :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='street'
-							name='street'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.street}</p>
-	
-						<label htmlFor="zipcode">Code postal :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='zipcode'
-							name='zipcode'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.zipcode}</p>
-	
-						<label htmlFor="city">Ville :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='city'
-							name='city'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.city}</p>
-					</div>
-	
-					<div className="Register-form-group">
-						<label htmlFor="birthDate">Date de naissance :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='birthDate'
-							name='birthDate'
-							placeholder='JJ/MM/AAAA'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.birthDate}</p>
-					</div>
-	
-					<div className="Register-form-group">
-						<label htmlFor="phone">Téléphone :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='phone'
-							name='phone'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.phone}</p>
-					</div>
-	
-					<div className="Register-form-group">
-						<label htmlFor="mail">E-mail :</label>
-						<input
-							type="text"
-							className='Register-form-input'
-							id='mail'
-							name='mail'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.mail}</p>
-					</div>
-	
-					<div className="Register-form-group">
-						<label htmlFor="password">Mot de passe :</label>
-						<input
-							type="password"
-							className='Register-form-input'
-							id='password'
-							name='password'
-							onChange={handleChange}
-						/>
-						<p className='error-msg'>{formErrors.password}</p>
-					</div>
-	
-					<button className='Register-form-button'>Valider</button>
-				</form>
-			</section>
-		)
-	}
+
+				<div className="Register-form-group">
+					<label htmlFor="lastName">Nom :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='lastName'
+						name='lastName'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.lastName}</p>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="street">Adresse :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='street'
+						name='street'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.street}</p>
+
+					<label htmlFor="zipcode">Code postal :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='zipcode'
+						name='zipcode'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.zipcode}</p>
+
+					<label htmlFor="city">Ville :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='city'
+						name='city'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.city}</p>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="birthDate">Date de naissance :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='birthDate'
+						name='birthDate'
+						placeholder='JJ/MM/AAAA'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.birthDate}</p>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="phone">Téléphone :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='phone'
+						name='phone'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.phone}</p>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="mail">E-mail :</label>
+					<input
+						type="text"
+						className='Register-form-input'
+						id='mail'
+						name='mail'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.mail}</p>
+				</div>
+
+				<div className="Register-form-group">
+					<label htmlFor="password">Mot de passe :</label>
+					<input
+						type="password"
+						className='Register-form-input'
+						id='password'
+						name='password'
+						onChange={handleChange}
+					/>
+					<p className='error-msg'>{formErrors.password}</p>
+				</div>
+
+				<Link to='/login'>Déjà inscrit(e) ?</Link>
+
+				<button className='Register-form-button'>Valider</button>
+			</form>
+		</section>
+	)
 }
 export default Register

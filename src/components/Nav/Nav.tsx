@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { FaStream } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../App'
 import Button from '../Button/Button'
 import MobileMenu from '../MobileMenu/MobileMenu'
 import logo from '../../assets/svg/logo.svg'
 import './Nav.scss'
+import { UserContext } from '../../App'
 
 const Nav: React.FC = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
 		setShowMenu(false)
 	}
 
-	const userContext = useContext(UserContext)
+	const { user } = useContext(UserContext)
 
 	return (
 		<>
@@ -29,10 +29,8 @@ const Nav: React.FC = () => {
 				<div className="Nav-links">
 					<Link to="/" className='link'>Accueil</Link>
 					<Link to="location" className='link'>Location</Link>
-					<Link to="faq" className='link'>F.A.Q</Link>
-					<Link to="register" className='link'>S'enregistrer</Link>
 					{
-						Object.keys(userContext).length === 0 ?
+						Object.keys(user).length === 0 ?
 							<Button link='login' text='Connexion' />
 						:
 							<Button link='profile' text='Mon Profil' />

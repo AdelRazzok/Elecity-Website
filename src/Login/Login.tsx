@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { UserContext } from '../App'
+import Profile from '../Profile/Profile'
 import './Login.scss'
 
+interface formValues {
+	mail?: string
+	password?: string
+}
+
 const Login: React.FC = () => {
-
-	interface formValues {
-		mail?: string
-		password?: string
-	}
-
 	const [formValues, setFormValues] = useState<formValues>({})
 	const [formErrors, setFormErrors] = useState<formValues>({})
 	const [isSubmit, setIsSubmit] = useState<boolean>(false)
@@ -38,6 +41,8 @@ const Login: React.FC = () => {
 		return errors
 	}
 
+	const { user, setUser } = useContext(UserContext)
+
 	const logUser = async () => {
 		const user = {
 			mail: formValues.mail,
@@ -53,7 +58,6 @@ const Login: React.FC = () => {
 		const res = await fetch('http://localhost:5000/api/v1/users/login', settings)
 		const data = await res.json()
 		if (data.error) {
-			console.log(`Erreur: ${data.error}`)
 			setFormErrors(prev => {
 				return {
 					...prev,
@@ -61,7 +65,25 @@ const Login: React.FC = () => {
 				}
 			})
 		} else {
-			sessionStorage.setItem('userToken', data.token)
+			const user = {
+				firstname: data.firstname,
+				lastname: data.lastname,
+				address: {
+					street: data.address.street,
+					zipcode: data.address.zipcode,
+					city: data.address.city,
+				},
+				birthDate: data.birthDate,
+				phone: data.phone,
+				mail: data.mail,
+				token: data.token,
+			}
+
+			sessionStorage.setItem('user', JSON.stringify(user))
+
+			setUser(() => {
+				return user
+			})
 		}
 	}
 	useEffect(() => {
@@ -70,7 +92,7 @@ const Login: React.FC = () => {
 		}
 	}, [formErrors])
 
-	return (
+	return Object.keys(user).length === 0 ? (
 		<section className="Login">
 			<div className="Login-hero">
 				<h1 className="Login-hero-title">SE CONNECTER</h1>
@@ -99,9 +121,14 @@ const Login: React.FC = () => {
 					<p className='error-msg'>{formErrors.password}</p>
 				</div>
 
+				<Link to='/register'>Pas encore inscrit(e) ?</Link>
+
 				<button className='Login-form-button'>Valider</button>
 			</form>
 		</section>
+	) : (
+		<Navigate to='/profile' />
 	)
+
 }
 export default Login
