@@ -1,16 +1,19 @@
 import './PanelImages.scss'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-import side from '../../assets/img/citadineSide.png'
-import front from '../../assets/img/citadineFront.png'
-import back from '../../assets/img/citadineBack.png'
+import { OfferInterface } from '../Hero/Hero'
 
-const PanelImages: React.FC = () => {
+interface Props {
+  imgs: OfferInterface["offer_image"]
+}
+
+const PanelImages: React.FC<Props> = ({ imgs }) => {
+
   return (
     <div className="PanelImages">
       <Swiper
@@ -27,13 +30,13 @@ const PanelImages: React.FC = () => {
         loop={true}
       >
         <SwiperSlide>
-          <img src={side} />
+          <img src={imgs.side.image_kit_url} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={front} />
+          <img src={imgs.back.image_kit_url} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={back} />
+          <img src={imgs.front.image_kit_url} />
         </SwiperSlide>
       </Swiper>
     </div>

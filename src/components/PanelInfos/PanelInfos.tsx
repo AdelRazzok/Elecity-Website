@@ -4,44 +4,78 @@ import { OfferInterface } from '../Hero/Hero'
 
 //SVG Icons
 import { IconContext } from 'react-icons'
-
 import { MdAirlineSeatReclineExtra, MdElectricCar } from 'react-icons/md'
 import { GiGearStickPattern, GiCarDoor } from 'react-icons/gi'
 import { FiBatteryCharging } from 'react-icons/fi'
 
 interface Props {
-  infos: {
-    offer_description: OfferInterface["offer_description"],
-    offer_specs: OfferInterface["offer_specs"]
-  }
+  desc: OfferInterface["offer_description"],
+  specs: OfferInterface["offer_specs"]
 }
 
-const PanelInfos: React.FC = (props) => {
+const PanelInfos: React.FC<Props> = ({ desc, specs }) => {
+
+
+  const badges = Object.keys(specs).map((key: any, i) => {
+    let badge: any
+    switch (key) {
+      case 'engine':
+        badge =
+          <>
+            <MdElectricCar />
+            <p key={i}>{specs.engine}</p>
+          </>
+        break
+      case 'gearbox':
+        badge =
+          <>
+            <GiGearStickPattern />
+            <p key={i}>{specs.gearbox}</p>
+          </>
+        break
+      case 'seats':
+        badge =
+          <>
+            <MdAirlineSeatReclineExtra />
+            <p key={i}>{specs.seats} places</p>
+          </>
+        break
+      case 'autonomy':
+        badge =
+          <>
+            <FiBatteryCharging />
+            <p key={i}>{specs.autonomy}</p>
+          </>
+        break
+      case 'doors':
+        badge =
+          <>
+            <GiCarDoor />
+            <p key={i}>{specs.doors} portes</p>
+          </>
+        break
+      default:
+        badge = null
+    }
+    return (
+      <span>
+        <IconContext.Provider value={{ size: '2em' }}>
+          {badge}
+        </IconContext.Provider>
+      </span>
+    )
+  })
+
   return (
-    <IconContext.Provider value={{size: '1.5rem'}} >
-      <div className="PanelInfos">
-        <h3>Infos</h3>
-        <div className="PanelInfos-body">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis pariatur quo labore.</p>
-          <div className="PanelInfos-body-specs">
-            <span>
-              <GiGearStickPattern />
-              <GiCarDoor />
-              <p>Manuelle</p>
-            </span>
-            <span>
-              <MdAirlineSeatReclineExtra />
-              <FiBatteryCharging />
-              <p>5 places</p>
-            </span>
-            <span>
-              <MdElectricCar />
-              <p>Electrique</p>
-            </span>
-          </div>
+    <div className="PanelInfos">
+      <h3>Infos</h3>
+      <div className="PanelInfos-body">
+        <p>{desc}</p>
+        <div className="PanelInfos-body-specs">
+          {badges}
         </div>
       </div>
-    </IconContext.Provider>
+    </div>
   )
 }
 

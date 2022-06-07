@@ -3,23 +3,13 @@ import React, { useState, useEffect } from 'react'
 import Map from '../Map/Map'
 import LocationPanel from '../LocationPanel/LocationPanel'
 import { OfferInterface } from '../Hero/Hero'
+import { FetchOffers } from '../../helper'
 
 const LocationMain: React.FC = () => {
 
-  const FetchOffers = async () => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.REACT_APP_JWT_BEARER}`,
-      },
-    }
-
-    const res = await fetch('http://elecity-api.herokuapp.com/api/v1/offers', options)
-    const raw_data = await res.json()
-
-    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false })).reverse()
-
+  const GetOffersAsync = async () => {
+    const raw_data = await FetchOffers()
+    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false }))
     data[0].active = true
     setOffers(data)
   }
@@ -27,9 +17,7 @@ const LocationMain: React.FC = () => {
   const [offers, setOffers] = useState<OfferInterface[]>([])
 
   useEffect(() => {
-
-    FetchOffers()
-
+    GetOffersAsync()
   }, [])
   
   return (

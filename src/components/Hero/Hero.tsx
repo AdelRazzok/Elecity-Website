@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { FetchOffers } from '../../helper';
 import HeroOffer from '../HeroOffer/HeroOffer';
 import './Hero.scss'
 
@@ -7,6 +8,7 @@ export interface OfferInterface {
   _id: string;
   offer_name: string;
   offer_model: string;
+  offer_brand: string;
   offer_specs: {
     engine: string;
     gearbox: string;
@@ -19,10 +21,22 @@ export interface OfferInterface {
     day: number;
   };
   offer_image: {
-    main: string;
-    front: string;
-    side: string;
-    back: string;
+    main: {
+      image_kit_id: string;
+      image_kit_url: string;
+    }
+    front: {
+      image_kit_id: string;
+      image_kit_url: string;
+    }
+    side: {
+      image_kit_id: string;
+      image_kit_url: string;
+    }
+    back: {
+      image_kit_id: string;
+      image_kit_url: string;
+    }
   };
   offer_description: string;
   __v?: number;
@@ -30,20 +44,9 @@ export interface OfferInterface {
 
 const Hero: React.FC = () => {
 
-  const FetchOffers = async () => {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.REACT_APP_JWT_BEARER}`,
-      },
-    }
-
-    const res = await fetch('http://elecity-api.herokuapp.com/api/v1/offers', options)
-    const raw_data = await res.json()
-
-    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false })).reverse()
-
+  const GetOffersAsync = async () => {
+    const raw_data = await FetchOffers()
+    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false }))
     data[0].active = true
     setOffers(data)
   }
@@ -51,9 +54,7 @@ const Hero: React.FC = () => {
   const [offers, setOffers] = useState<OfferInterface[]>([])
 
   useEffect(() => {
-
-    FetchOffers()
-
+    GetOffersAsync()
   }, [])
 
   const toggleActiveOnOffer = (id: string) => {

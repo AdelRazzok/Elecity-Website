@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useEffect, useState } from 'react'
+import React, { useRef, useLayoutEffect } from 'react'
 import './HeroOffer.scss'
 import { OfferInterface } from '../Hero/Hero'
 import Button from '../Button/Button'
@@ -17,28 +17,6 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
 
   const specList = offer.offer_specs
   const specs = `${specList.engine} • ${specList.gearbox} • ${specList.seats} places`
-
-  const [img, setImg] = useState(offer.offer_image.main)
-  const [imgLoading, setImgLoading] = useState(true)
-  
-  useEffect(() => {
-    const fetchImg = async () => {
-      const options = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.REACT_APP_JWT_BEARER}`,
-        },
-      }
-
-      const fileData = await fetch(`http://elecity-api.herokuapp.com/api/v1/files/${img}`, options)
-      const blob = await fileData.blob()
-      const url = URL.createObjectURL(blob)
-      setImgLoading(false)
-      setImg(url)
-    }
-    fetchImg()
-  }, [])
 
   let offerInfosRef = useRef<HTMLElement[] | []>([])
 
@@ -65,7 +43,6 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
   let carImgsRef = useRef<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
-    if (imgLoading) return
     gsap.fromTo(carImgsRef.current!, {
       opacity: 0,
       right: '-100%',
@@ -77,7 +54,7 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
       delay: `0.${id}`,
       clearProps: 'right'
     })
-  }, [img])
+  }, [])
 
   const handleClick = () => {
     toggleActiveOnOffer(offer._id)
@@ -87,7 +64,7 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
     <>
       <div onClick={handleClick} className={`HeroOffer ${offer.active ? 'active' : ''}`} >
 
-        {imgLoading ? <span className="HeroOffer-img HeroOffer-img-spinner"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></span> : <img src={img} className="HeroOffer-img" ref={el => carImgsRef.current = el} />}
+        <img src={offer.offer_image.main.image_kit_url} className="HeroOffer-img" ref={el => carImgsRef.current = el} />
 
         <div ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-head">
           {offer.active && <img src={brandLogo} />}

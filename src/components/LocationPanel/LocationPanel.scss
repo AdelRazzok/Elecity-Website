@@ -54,7 +54,7 @@
 // Opened :checked
 .titleCheckbox:checked {
   ~ .LocationPanel-body {
-    max-height: 480px;
+    max-height: 500px;
     padding-block: 0.625rem;
     visibility: unset;
   }

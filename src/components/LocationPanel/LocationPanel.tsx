@@ -32,18 +32,22 @@ const LocationPanels: React.FC<Props> = ({ offer, id }: Props) => {
       <label htmlFor={`panel${id}`}><h2>{`${offer.offer_name}`}</h2></label>
       <div className="LocationPanel-body">
 
-        <div className="LocationPanel-body-top">
-          <PanelInfos />
-          <PanelImages />
-        </div>
+        <form action="">
 
-        <div className="LocationPanel-body-mid">
-          <PanelPrices />
-        </div>
+          <div className="LocationPanel-body-top">
+            <PanelInfos desc={offer.offer_description} specs={offer.offer_specs} />
+            <PanelImages imgs={offer.offer_image} />
+          </div>
 
-        <div className="LocationPanel-body-bot">
-          <PanelFinal />
-        </div>
+          <div className="LocationPanel-body-mid">
+            <PanelPrices id={id} prices={offer.offer_price} />
+          </div>
+
+          <div className="LocationPanel-body-bot">
+            <PanelFinal />
+          </div>
+
+        </form>
 
       </div>
     </div>
