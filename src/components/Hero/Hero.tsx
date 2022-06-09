@@ -44,17 +44,14 @@ export interface OfferInterface {
 
 const Hero: React.FC = () => {
 
-  const GetOffersAsync = async () => {
-    const raw_data = await FetchOffers()
-    const data = await raw_data.map((offer: OfferInterface) => ({ ...offer, active: false }))
-    data[0].active = true
-    setOffers(data)
-  }
-
   const [offers, setOffers] = useState<OfferInterface[]>([])
 
   useEffect(() => {
-    GetOffersAsync()
+    FetchOffers().then( raw_data => {
+      const data = raw_data.map((offer: OfferInterface) => ({ ...offer, active: false }))
+      data[0].active = true
+      setOffers(data)
+    })
   }, [])
 
   const toggleActiveOnOffer = (id: string) => {
