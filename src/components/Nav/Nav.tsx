@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
-import { FaStream } from 'react-icons/fa'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import Button from '../Button/Button'
-import MobileMenu from '../MobileMenu/MobileMenu'
+import AuthContext from '../../context/AuthProvider'
+import { FaStream } from 'react-icons/fa'
+import { AnimatePresence } from 'framer-motion'
+import Button from '../Button'
+import MobileMenu from '../MobileMenu'
 import logo from '../../assets/svg/logo.svg'
 import './Nav.scss'
-import { UserContext } from '../../App'
 
 const Nav: React.FC = () => {
+	const { auth } = useContext(AuthContext)
 	const [showMenu, setShowMenu] = useState<boolean>(false)
 	const bodyEl = document.getElementsByTagName('body')[0]
 	const openMenu = () => {
@@ -20,8 +21,6 @@ const Nav: React.FC = () => {
 		setShowMenu(false)
 	}
 
-	const { user } = useContext(UserContext)
-
 	return (
 		<>
 			<nav className='Nav'>
@@ -29,12 +28,10 @@ const Nav: React.FC = () => {
 				<div className="Nav-links">
 					<Link to="/" className='link'>Accueil</Link>
 					<Link to="location" className='link'>Location</Link>
-					{
-						Object.keys(user).length === 0 ?
-							<Button link='login' text='Connexion' />
-						:
-							<Button link='profile' text='Mon Profil' />
-					}
+					{auth.accessToken ?
+						<Button link='profile' text='Mon Profil' />
+					:
+						<Button link='login' text='Connexion' />}
 				</div>
 				<div className="Nav-mobile">
 					<button

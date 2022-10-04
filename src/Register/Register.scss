@@ -4,8 +4,6 @@
 @import '../styles/mixins.scss';
 
 .Register {
-	margin-bottom: 5rem;
-
 	&-hero {
 		position: relative;
 		&::before {
@@ -31,8 +29,8 @@
 			margin: 0;
 			padding-inline: 2rem;
 			@include breakpoint-up(large) {
-			padding-inline: 8.75rem;
-		}
+				padding-inline: 8.75rem;
+			}
 			font-family: $fontOswald;
 			font-size: $fontSizeLarge;
 			font-weight: 500;
@@ -43,7 +41,7 @@
 		@extend %flex-center;
 		flex-direction: column;
 		gap: 1.5rem;
-		margin-top: 5rem;
+		margin-top: 3rem;
 
 		&-group {
 			display: flex;
@@ -61,7 +59,10 @@
 		box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
 		border-radius: 5px;
 		background: #efefef;
-
 		font-size: 1.1rem;
 	}
+}
+
+.error-msg {
+	color: #ff4444;
 }

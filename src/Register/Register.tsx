@@ -1,249 +1,189 @@
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { registerSchema } from '../schemas'
 import './Register.scss'
 
-interface formValues {
-	firstName?: string
-	lastName?: string
-	street?: string
-	zipcode?: string
-	city?: string
-	birthDate?: string
-	phone?: string
-	mail?: string
-	password?: string
+interface FormValues {
+	firstName: string
+	lastName: string
+	street: string
+	zipcode: string
+	city: string
+	birthDate: string
+	phone: string
+	mail: string
+	password: string
 }
+const apiUrl = 'http://localhost:5000/api/v1'
 
 const Register: React.FC = () => {
-	const [formValues, setFormValues] = useState<formValues>({})
-	const [formErrors, setFormErrors] = useState<formValues>({})
-	const [isSubmit, setIsSubmit] = useState(false)
+	const [isEmailFree, setIsEmailFree] = useState<boolean>(true)
+	const [success, setSuccess] = useState<boolean>(false)
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = event.target
-		setFormValues(prev => {
-			return {
-				...prev,
-				[name]: value
-			}
-		})
-	}
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-		setFormErrors(checkFormValues(formValues))
-		setIsSubmit(true)
+	const initialValues: FormValues = {
+		firstName: '',
+		lastName: '',
+		street: '',
+		zipcode: '',
+		city: '',
+		birthDate: '',
+		phone: '',
+		mail: '',
+		password: '',
 	}
 
-	const checkFormValues = (values: formValues) => {
-		const errors: formValues = {}
-		const emptyErrMsg = 'Champ requis'
-		const formatErrMsg = 'Format invalide'
-		const nameRgx = /^[a-z éèçâêîôûäëïöü,.'-]{2,20}$/i
-		const streetRgx = /^[0-9]{1,3}[a-z éèçâêîôûäëïöü,.'-]{1,50}$/i
-		const zipcodeRgx = /^[0-9]{5}$/
-		const cityRgx = /^[a-z éèçâêîôûäëïöü,.'-]{2,50}$/i
-		const birthDateRgx = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/
-		const phoneRgx = /^[0-9]{10}$/
-		const mailRgx = /^[a-z0-9.-]+@[a-z0-9.-]+\.[a-z]{2,5}$/i
+	const createUser = async (values: FormValues) => {
+		const { firstName, lastName, street, zipcode, city, birthDate, phone, mail, password } = values
+		const user = {
+			first_name: firstName,
+			last_name: lastName,
+			address: {
+				street: street,
+				zipcode: zipcode,
+				city: city,
+			},
+			birth_date: birthDate,
+			phone: phone,
+			mail: mail,
+			password: password,
+			role: 'user',
+		}
+		const options = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(user),
+		}
 
-		if (!values.firstName) {
-			errors.firstName = emptyErrMsg
-		} else if (!nameRgx.test(values.firstName)) {
-			errors.firstName = formatErrMsg
+		try {
+			const res = await fetch(`${apiUrl}/users/register`, options)
+			
+			if(res?.status === 201) {
+				setSuccess(true)
+			} else {
+				setIsEmailFree(false)
+			}
+		} catch (err) {
+			console.log(err)
 		}
-		if (!values.lastName) {
-			errors.lastName = emptyErrMsg
-		} else if (!nameRgx.test(values.lastName)) {
-			errors.lastName = formatErrMsg
-		}
-		if (!values.street) {
-			errors.street = emptyErrMsg
-		} else if (!streetRgx.test(values.street)) {
-			errors.street = formatErrMsg
-		}
-		if (!values.zipcode) {
-			errors.zipcode = emptyErrMsg
-		} else if (!zipcodeRgx.test(values.zipcode)) {
-			errors.zipcode = formatErrMsg
-		}
-		if (!values.city) {
-			errors.city = emptyErrMsg
-		} else if (!cityRgx.test(values.city)) {
-			errors.city = formatErrMsg
-		}
-		if (!values.birthDate) {
-			errors.birthDate = emptyErrMsg
-		} else if (!birthDateRgx.test(values.birthDate)) {
-			errors.birthDate = formatErrMsg
-		}
-		if (!values.phone) {
-			errors.phone = emptyErrMsg
-		} else if (!phoneRgx.test(values.phone)) {
-			errors.phone = formatErrMsg
-		}
-		if (!values.mail) {
-			errors.mail = emptyErrMsg
-		} else if (!mailRgx.test(values.mail)) {
-			errors.mail = formatErrMsg
-		}
-		if (!values.password) {
-			errors.password = emptyErrMsg
-		}
-		return errors
 	}
-	
-	useEffect(() => {
-		if (Object.keys(formErrors).length === 0 && isSubmit) {
-			const user = {
-				first_name: formValues.firstName,
-				last_name: formValues.lastName,
-				address: {
-					street: formValues.street,
-					zipcode: formValues.zipcode,
-					city: formValues.city,
-				},
-				birth_date: formValues.birthDate,
-				phone: formValues.phone,
-				mail: formValues.mail,
-				password: formValues.password,
-				role: 'user'
-			}
-			const settings = {
-				method: 'POST',
-				body: JSON.stringify(user),
-				headers: {
-					'Content-Type': 'application/json',
-				}
-			}
-			try {
-				fetch('http://localhost:5000/api/v1/users/register', settings)
-			} catch (err) {
-				console.log(err)
-			}
-		}
-	}, [formErrors])
 
-	return Object.keys(formErrors).length === 0 && isSubmit ? (
-		<div className='Register-success'>
-			<p>Inscription réussie !</p>
-			<Link to='/'>Retournez à l'accueil</Link>
-		</div>
-	) : (
+	return (
 		<section className='Register'>
 			<div className="Register-hero">
 				<h1 className="Register-hero-title">S'ENREGISTRER</h1>
 			</div>
 
-			<form className="Register-form" onSubmit={handleSubmit}>
-				<div className="Register-form-group">
-					<label htmlFor="firstName">Prénom :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='firstName'
-						name='firstName'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.firstName}</p>
+			{success ? (
+				<div>
+					<h1>Merci pour votre inscription</h1>
+					<p>
+						<Link to='/login'>Connectez-vous</Link> dès maintenant.
+					</p>
 				</div>
+			) : (
+				<>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={registerSchema}
+					onSubmit={(values: FormValues, { setSubmitting }) => {
+						createUser(values)
+						setSubmitting(false)
+					}}
+				>
+					<Form className='Register-form'>
+						<div className="Register-form-group">
+							<Field
+								type='text'
+								name='firstName'
+								placeholder='Prénom'
+							/>
+							<ErrorMessage name='firstName' component='span' className='error-msg' />
 
-				<div className="Register-form-group">
-					<label htmlFor="lastName">Nom :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='lastName'
-						name='lastName'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.lastName}</p>
-				</div>
+							<Field
+								type='text'
+								name='lastName'
+								placeholder='Nom'
+							/>
+							<ErrorMessage name='lastName' component='span' className='error-msg' />
+						</div>
 
-				<div className="Register-form-group">
-					<label htmlFor="street">Adresse :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='street'
-						name='street'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.street}</p>
+						<div className="Register-form-group">
+							<Field
+								type='email'
+								name='mail'
+								placeholder='Adresse mail'
+							/>
+							<ErrorMessage name='mail' component='span' className='error-msg' />
+							{!isEmailFree && <span className='error-msg'>E-mail invalide</span>}
 
-					<label htmlFor="zipcode">Code postal :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='zipcode'
-						name='zipcode'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.zipcode}</p>
+							<Field
+								type='text'
+								name='phone'
+								placeholder='Numéro de téléphone'
+							/>
+							<ErrorMessage name='phone' component='span' className='error-msg' />
+						</div>
 
-					<label htmlFor="city">Ville :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='city'
-						name='city'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.city}</p>
-				</div>
+						<div className="Register-form-group">
+							<Field
+								type='date'
+								name='birthDate'
+								placeholder='Date de naissance'
+								onBlur={(e) => console.log(e.target.value)}
+							/>
+							<ErrorMessage name='birthDate' component='span' className='error-msg' />
+						</div>
 
-				<div className="Register-form-group">
-					<label htmlFor="birthDate">Date de naissance :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='birthDate'
-						name='birthDate'
-						placeholder='JJ/MM/AAAA'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.birthDate}</p>
-				</div>
+						<div className="Register-form-group">
+							<Field
+								type='text'
+								name='street'
+								placeholder='Rue'
+							/>
+							<ErrorMessage name='street' component='span' className='error-msg' />
 
-				<div className="Register-form-group">
-					<label htmlFor="phone">Téléphone :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='phone'
-						name='phone'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.phone}</p>
-				</div>
+							<Field
+								type='text'
+								name='city'
+								placeholder='Ville'
+							/>
+							<ErrorMessage name='city' component='span' className='error-msg' />
 
-				<div className="Register-form-group">
-					<label htmlFor="mail">E-mail :</label>
-					<input
-						type="text"
-						className='Register-form-input'
-						id='mail'
-						name='mail'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.mail}</p>
-				</div>
+							<Field
+								type='text'
+								name='zipcode'
+								placeholder='Code postal'
+							/>
+							<ErrorMessage name='zipcode' component='span' className='error-msg' />
+						</div>
 
-				<div className="Register-form-group">
-					<label htmlFor="password">Mot de passe :</label>
-					<input
-						type="password"
-						className='Register-form-input'
-						id='password'
-						name='password'
-						onChange={handleChange}
-					/>
-					<p className='error-msg'>{formErrors.password}</p>
-				</div>
+						<div className="Register-form-group">
+							<Field
+								type='password'
+								name='password'
+								placeholder='Mot de passe'
+							/>
+							<ErrorMessage name='password' component='span' className='error-msg' />
 
-				<Link to='/login'>Déjà inscrit(e) ?</Link>
+							<Field
+								type='password'
+								name='passwordConfirm'
+								placeholder='Confirmation mot de passe'
+							/>
+							<ErrorMessage name='passwordConfirm' component='span' className='error-msg' />
+						</div>
 
-				<button className='Register-form-button'>Valider</button>
-			</form>
+						<div className="Register-form-group">
+							<button type='submit'>Valider</button>
+						</div>
+					</Form>
+				</Formik>
+				<Link to='/login' className='Register-form'>Déjà inscrit(e) ?</Link>	
+				</>
+			)}
 		</section>
 	)
 }
