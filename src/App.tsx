@@ -1,8 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react'
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
+	BrowserRouter as Router,
+	Routes,
+	Route,
 } from 'react-router-dom'
 import Nav from './components/Nav/Nav'
 import Home from './Home/Home'
@@ -31,7 +31,7 @@ const App: React.FC = () => {
 	const [user, setUser] = useState<UserInterface>({})
 
 	useEffect(() => {
-		if(sessionStorage.getItem('user')) {
+		if (sessionStorage.getItem('user')) {
 			const storage: any = sessionStorage.getItem('user')
 			const data = JSON.parse(storage)
 
@@ -41,7 +41,7 @@ const App: React.FC = () => {
 		}
 	}, [])
 
-  	return (
+	return (
 		<Router>
 			<UserContext.Provider value={{ user, setUser }}>
 				<Nav />
