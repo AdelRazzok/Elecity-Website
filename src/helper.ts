@@ -6,8 +6,7 @@ export const FetchOffers = async () => {
       'token': process.env.REACT_APP_API_KEY!,
     },
   }
-
-  const data = await fetch('https://elecity-api.herokuapp.com/api/v1/offers', options)
+  const data = await fetch(process.env.REACT_APP_API_BASE_URL!+'/offers', options)
   return await data.json()
 }
 
@@ -18,9 +17,8 @@ export const checkAPI = async () => {
       'Content-Type': 'application/json',
     },
   }
-
   try {
-    const res = await fetch('https://elecity-api.herokuapp.com/api/v1/', options)
+    const res = await fetch(process.env.REACT_APP_API_BASE_URL!+'/', options)
     const data = await res.json()
     return data.running
   } catch (error) {
