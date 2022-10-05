@@ -10,7 +10,7 @@ import Profile from './Profile'
 import './styles/globals.scss'
 
 const App: React.FC = () => {
-  	return (
+	return (
 		<>
 			<Nav />
 			<Routes>

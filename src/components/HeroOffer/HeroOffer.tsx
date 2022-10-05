@@ -14,10 +14,8 @@ interface Props {
 }
 
 const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) => {
-
   const specList = offer.offer_specs
   const specs = `${specList.engine} • ${specList.gearbox} • ${specList.seats} places`
-
   let offerInfosRef = useRef<HTMLElement[] | []>([])
 
   useLayoutEffect(() => {
@@ -39,9 +37,7 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
     })
 
   }, [offer.active])
-
   let carImgsRef = useRef<HTMLElement | null>(null)
-
   useLayoutEffect(() => {
     gsap.fromTo(carImgsRef.current!, {
       opacity: 0,
@@ -55,17 +51,14 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
       clearProps: 'right'
     })
   }, [])
-
+  
   const handleClick = () => {
     toggleActiveOnOffer(offer._id)
   }
-
   return (
     <>
       <div onClick={handleClick} className={`HeroOffer ${offer.active ? 'active' : ''}`} >
-
         <img src={offer.offer_image.main.image_kit_url} className="HeroOffer-img" ref={el => carImgsRef.current = el} />
-
         <div ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-head">
           {offer.active && <img src={brandLogo} />}
           <span>
@@ -75,7 +68,6 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
           </span>
           <img src={plug} />
         </div>
-
         <div className="HeroOffer-body">
           <div className="HeroOffer-body-info">
             <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }} className="HeroOffer-body-info-model">{offer.offer_model}</span>
@@ -84,7 +76,6 @@ const HeroOffer: React.FC<Props> = ({ offer, id, toggleActiveOnOffer }: Props) =
             {offer.active && <span ref={el => { offerInfosRef.current = el ? [...offerInfosRef.current, el] : [] }}><Button styles={{ paddingInline: '2.1875rem' }} link="#" text="Louer" /></span>}
           </div>
         </div>
-
       </div>
     </>
   )
