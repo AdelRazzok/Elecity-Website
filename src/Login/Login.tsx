@@ -9,7 +9,6 @@ interface FormValues {
 	mail: string
 	password: string
 }
-const apiUrl = 'http://localhost:5000/api/v1'
 
 const Login: React.FC = () => {
 	const { auth, setAuth } = useContext(AuthContext)
@@ -34,7 +33,7 @@ const Login: React.FC = () => {
 		}
 
 		try {
-			const res = await fetch(`${apiUrl}/users/login`, options)
+			const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, options)
 			const data = await res.json()
 
 			if(res?.status === 200) {

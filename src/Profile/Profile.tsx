@@ -28,7 +28,7 @@ const Profile: React.FC = () => {
 			},
 		}
 		try {
-			const res = await fetch('http://localhost:5000/api/v1/users/me', settings)
+			const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/infos`, settings)
 			const data = await res.json()
 			setUser(data)
 		} catch (err) {

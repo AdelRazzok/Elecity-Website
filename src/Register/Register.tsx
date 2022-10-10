@@ -15,7 +15,6 @@ interface FormValues {
 	mail: string
 	password: string
 }
-const apiUrl = 'http://localhost:5000/api/v1'
 
 const Register: React.FC = () => {
 	const [isEmailFree, setIsEmailFree] = useState<boolean>(true)
@@ -58,7 +57,7 @@ const Register: React.FC = () => {
 		}
 
 		try {
-			const res = await fetch(`${apiUrl}/users/register`, options)
+			const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/register`, options)
 			
 			if(res?.status === 201) {
 				setSuccess(true)
