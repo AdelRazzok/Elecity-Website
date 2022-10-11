@@ -31,16 +31,11 @@ const Login: React.FC = () => {
 			},
 			body: JSON.stringify(logs),
 		}
+		const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, options)
+		const data = await res.json()
 
-		try {
-			const res = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, options)
-			const data = await res.json()
-
-			if(res?.status === 200) {
-				setAuth(data)
-			}
-		} catch (err) {
-			console.log(err)
+		if(res.status === 200) {
+			setAuth(data)
 		}
 	}
 
@@ -59,6 +54,7 @@ const Login: React.FC = () => {
 				validationSchema={loginSchema}
 				onSubmit={(values: FormValues, { setSubmitting }) => {
 					login(values)
+					setSubmitting(false)
 				}}
 			>
 				<Form className='Login-form'>

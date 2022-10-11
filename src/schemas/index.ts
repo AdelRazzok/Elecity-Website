@@ -55,3 +55,38 @@ export const loginSchema = yup.object().shape({
 		.required(empty),
 	password: yup.string().required(empty),
 })
+
+export const profileSchema = yup.object().shape({
+	firstName: yup
+		.string()
+		.max(50, tooLong)
+		.required(empty),
+	lastName: yup
+		.string()
+		.max(50, tooLong)
+		.required(empty),
+	mail: yup
+		.string()
+		.email(invalid)
+		.required(empty),
+	phone: yup
+		.string()
+		.length(10, invalid)
+		.required(empty),
+	birthDate: yup
+		.string()
+		.length(10, invalid)
+		.required(empty),
+	street: yup
+		.string()
+		.max(50, tooLong)
+		.required(empty),
+	city: yup
+		.string()
+		.max(50, tooLong)
+		.required(empty),
+	zipcode: yup
+		.string()
+		.length(5, invalid)
+		.required(empty),
+})
