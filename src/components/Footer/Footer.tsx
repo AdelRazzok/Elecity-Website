@@ -1,7 +1,6 @@
-import React from 'react'
 import './Footer.scss'
 
-import { FaFacebook,FaInstagramSquare,FaTwitter} from 'react-icons/fa';
+import { FaFacebook,FaInstagramSquare,FaTwitter} from 'react-icons/fa'
 
 const Footer = () => {
     return (
@@ -22,5 +21,4 @@ const Footer = () => {
         </div>
     )
 }
-export default Footer;
-
+export default Footer

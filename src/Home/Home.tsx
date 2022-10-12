@@ -1,7 +1,7 @@
 import Hero from '../components/Hero'
-import Steps from '../components/Steps/Steps'
-import Map from '../../src/components/Map/Map'
-import Footer from '../../src/components/Footer/Footer'
+import Steps from '../components/Steps'
+import Map from '../../src/components/Map'
+import Footer from '../../src/components/Footer'
 
 const Home: React.FC = () => {
 	return (
