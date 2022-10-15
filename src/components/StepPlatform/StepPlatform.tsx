@@ -122,7 +122,7 @@ const StepPlatform = ({ platforms, handleplatform, handlePostRent, rent_info }) 
         onClose={handleClose}
       >
         <Modal.Header>
-          <Modal.Title>Modal Title</Modal.Title>
+          <Modal.Title>Votre véhicule est réservé !</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {rent_info.resRent ? (
