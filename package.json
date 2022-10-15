@@ -13,6 +13,8 @@
     "formik": "^2.2.9",
     "framer-motion": "^6.2.9",
     "gsap": "^3.10.2",
+    "moment": "^2.29.4",
+    "momentjs": "^2.0.0",
     "node-fetch": "^3.2.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

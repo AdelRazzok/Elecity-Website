@@ -6,11 +6,12 @@ interface Props {
 	link: string
 	text: string
 	styles?: CSSProperties
+	handleChange?: (value) => void
 } 
 
-const Button: React.FC<Props> = ({ link, text, styles }) => {
+const Button: React.FC<Props> = ({ link, text, styles, handleChange }) => {
 	return (
-		<Link to={link} className='Button' style={styles}>{text}</Link>
+		<Link onClick={handleChange} to={link} className='Button' style={styles}>{text}</Link>
 	)
 } 
 export default Button
