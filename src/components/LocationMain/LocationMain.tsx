@@ -1,5 +1,5 @@
 import './LocationMain.scss'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { OfferInterface } from '../Hero/Hero'
 import { FetchOffers, GetAvailableCars, PostRent } from '../../helper'
 import RentOffer from '../RentOffer/RentOffer'
@@ -10,10 +10,11 @@ import StepOffer from '../StepOffer'
 import StepTime from '../StepTime'
 import StepPlatform from '../StepPlatform'
 import moment from 'moment'
-
-
+import AuthContext from '../../context/AuthProvider'
 
 const LocationMain: React.FC = () => {
+
+  const { auth } = useContext(AuthContext)
 
   const [step, setStep] = React.useState(0);
 
@@ -103,36 +104,40 @@ const LocationMain: React.FC = () => {
       {/* <h1>SELECTIONNEZ UN PARC PRES DE VOUS</h1>
         <Map /> */}
       {/* </div> */}
-      <div className="LocationMain-offers">
+      {auth.accessToken ? (
+        <div className="LocationMain-offers">
 
-        {/* {rederedOffers ?? 'loading ...'} */}
+          {/* {rederedOffers ?? 'loading ...'} */}
 
-        <Steps current={step}>
-          <Steps.Item title="Choisissez une ville" description="Description" />
-          <Steps.Item title="Choisissez une offre" description="Description" />
-          <Steps.Item title="Choisissez une formule" description="Description" />
-          <Steps.Item title="Choisissez le parc" description="Description" />
-        </Steps>
-        <hr />
-        <Panel>
-          {/* <Placeholder.Paragraph /> */}
-          {step === 0 && <StepCity handleCity={handleCity} />}
-          {step === 1 && <StepOffer offersElement={offersElement} />}
-          {step === 2 && <StepTime handleFormule={handleFormule} handleStartDate={handleStartDate} />}
-          {step === 3 && <StepPlatform rent_info={{platform, userId, offerId, startDate, endDate, resRent}} platforms={availablePlatforms} handleplatform={handleplatform} handlePostRent={handlePostRent} />}
-        </Panel>
-        <hr />
-        <ButtonGroup>
-          <Button onClick={onPrevious} disabled={step === 0}>
-            Previous
-          </Button>
-          <Button onClick={onNext} disabled={step === 3}>
-            Next
-          </Button>
-        </ButtonGroup>
+          <Steps current={step}>
+            <Steps.Item title="Choisissez une ville" description="Description" />
+            <Steps.Item title="Choisissez une offre" description="Description" />
+            <Steps.Item title="Choisissez une formule" description="Description" />
+            <Steps.Item title="Choisissez le parc" description="Description" />
+          </Steps>
+          <hr />
+          <Panel>
+            {/* <Placeholder.Paragraph /> */}
+            {step === 0 && <StepCity handleCity={handleCity} />}
+            {step === 1 && <StepOffer offersElement={offersElement} />}
+            {step === 2 && <StepTime handleFormule={handleFormule} handleStartDate={handleStartDate} />}
+            {step === 3 && <StepPlatform rent_info={{platform, userId, offerId, startDate, endDate, resRent}} platforms={availablePlatforms} handleplatform={handleplatform} handlePostRent={handlePostRent} />}
+          </Panel>
+          <hr />
+          <ButtonGroup>
+            <Button onClick={onPrevious} disabled={step === 0}>
+              Previous
+            </Button>
+            <Button onClick={onNext} disabled={step === 3}>
+              Next
+            </Button>
+          </ButtonGroup>
 
 
-      </div>
+        </div>)
+      :
+        <div><p>Vous devez être connecté pour réserver un véhicule.</p></div>
+      }
     </main>
   )
 }

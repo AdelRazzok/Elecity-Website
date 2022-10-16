@@ -76,7 +76,7 @@ const Register: React.FC = () => {
 			</div>
 
 			{success ? (
-				<div>
+				<div className='Register-success'>
 					<h1>Merci pour votre inscription</h1>
 					<p>
 						<Link to='/login'>Connectez-vous</Link> dès maintenant.
