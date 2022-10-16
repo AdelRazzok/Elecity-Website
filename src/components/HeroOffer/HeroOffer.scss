@@ -5,67 +5,67 @@
 .HeroOffer{
   // Cellulue de base
   @include breakpoint-up(medium){
-    height: 200px;
-    width: 270px;
+    height: 200px  !important;
+    width: 270px  !important;
   }
   @include breakpoint-up(large){
-    height: 180px;
-    width: 200px;
+    height: 180px  !important;
+    width: 200px  !important;
   }
-  height: 130px;
-  width: 240px;
+  height: 130px  !important;
+  width: 240px  !important;
 
-  padding: 1rem;
-  border-radius: 30px;
+  padding: 1rem  !important;
+  border-radius: 30px  !important;
 
-  transform: skew(-15deg);
-  transition: $transitionInOut;
+  transform: skew(-15deg)  !important;
+  transition: $transitionInOut  !important;
   
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: flex  !important;
+  flex-direction: column  !important;
+  justify-content: space-between  !important;
   
-  overflow: hidden;
-  background-color: white;
-  cursor: pointer;
-  user-select: none;
+  overflow: hidden  !important;
+  background-color: white  !important;
+  cursor: pointer  !important;
+  user-select: none  !important;
   
   // Reflet
   &:not(.active) {
-    position: relative;
+    position: relative  !important;
     &::after{
-      position: absolute;
-      content: '';
-      width: 100%;
-      top: 0;
-      bottom: 0;
-      opacity: 0.5;
-      background-image: linear-gradient(to right, white, transparent);
-      transform: skew(-52deg);
-      transition: ease 0.4s;
+      position: absolute  !important;
+      content: ''  !important;
+      width: 100%  !important;
+      top: 0  !important;
+      bottom: 0  !important;
+      opacity: 0.5  !important;
+      background-image: linear-gradient(to right, white, transparent)  !important;
+      transform: skew(-52deg)  !important;
+      transition: ease 0.4s  !important;
     }
     &::after {
-      left: -100%;
+      left: -100%  !important;
     }
   }
   
   &:hover {
     @include breakpoint-up(large){
-      width: 240px;
+      width: 240px  !important;
     }
-    transition: $transitionInOut;
+    transition: $transitionInOut  !important;
     @include breakpoint-up(medium){
-      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25)  !important;
     }
     @include breakpoint-up(large){
-      box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.25)  !important;
     }
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.25)  !important;
     
   // Reflet
     &:not(.active) {
       &::after {
-        left: 150%;
+        left: 150%  !important;
       }
     }
   }
@@ -73,81 +73,81 @@
   // Cellule active
   &.active {
     @include breakpoint-up(medium){
-      height: 270px;
-      width: 520px;
+      height: 270px  !important;
+      width: 520px  !important;
     }
     @include breakpoint-up(large){
-      height: 300px;
-      width: 550px;
+      height: 300px  !important;
+      width: 550px  !important;
     }
-    height: 350px;
-    width: 240px;
-    transform: skew(-15deg);
+    height: 350px  !important;
+    width: 240px  !important;
+    transform: skew(-15deg)  !important;
 
-    padding: 1.25rem;
-    box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.25);
+    padding: 1.25rem  !important;
+    box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.25)  !important;
     @include breakpoint-up(large){
-      box-shadow: 0px 30px 150px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 30px 150px rgba(0, 0, 0, 0.25)  !important;
     }
 
-    cursor: unset;
+    cursor: unset  !important;
     .HeroOffer {
       &-head {
-        justify-content: flex-start;
+        justify-content: flex-start  !important;
 
         img:last-child {
           @include breakpoint-up(medium) {
-            height: 30px;
+            height: 30px  !important;
           }
-          height: 20px;
+          height: 20px  !important;
         }
       }
       &-body {
-        transform: skew(-15deg);
-        height: 100%;
+        transform: skew(-15deg)  !important;
+        height: 100%  !important;
         
         &-info {
-          transform: skew(15deg);
-          justify-content: unset;
+          transform: skew(15deg)  !important;
+          justify-content: unset  !important;
           @include breakpoint-up(medium){
-            height: 80%;
+            height: 80%  !important;
           }
-          height: 100%;
+          height: 100%  !important;
 
           & > * {
-            transform: skew(15deg);
+            transform: skew(15deg)  !important;
           }
 
           &-model {
-            margin-top: 1rem;
-            font-size: $fontSizeMedium;
-            font-weight: 600;
-            // user-select:all;
+            margin-top: 1rem  !important;
+            font-size: $fontSizeMedium  !important;
+            font-weight: 600  !important;
+            // user-select:all  !important;
           }
 
           &-specs {
-            color: #595959;
-            font-size: $fontSizeXSmall;
+            color: #595959  !important;
+            font-size: $fontSizeXSmall  !important;
           }
           
           &-price {
-            margin-top: auto;
-            margin-bottom: 2rem;
+            margin-top: auto  !important;
+            margin-bottom: 2rem  !important;
             @include breakpoint-up(medium) {
-              margin-block: auto;
-              // margin-bottom: unset;
+              margin-block: auto  !important;
+              // margin-bottom: unset  !important;
             }
             > em {
-              color: $darkFont;
-              font-style: normal;
+              color: $darkFont  !important;
+              font-style: normal  !important;
               &:first-child{
-                // font-family: 'Roboto', sans-serif;
-                font-size: $fontSizeLarge;
-                font-weight: 600;
+                // font-family: 'Roboto', sans-serif  !important;
+                font-size: $fontSizeLarge  !important;
+                font-weight: 600  !important;
               }
               &:last-child {
-                font-size: unset;
-                font-weight: 600;
+                font-size: unset  !important;
+                font-weight: 600  !important;
               }
             }
           }
@@ -156,76 +156,76 @@
       }
       &-img {
         @include breakpoint-up(medium) {
-          width: 50%;
+          width: 50%  !important;
         }
         @include breakpoint-up(large) {
-          width: 60%;
+          width: 60%  !important;
         }
-        width: 70%;
-        top: 50%;
-        transform: translateY(-50%) skew(15deg);
-        // transition: $transitionInOut;
+        width: 70%  !important;
+        top: 50%  !important;
+        transform: translateY(-50%) skew(15deg)  !important;
+        // transition: $transitionInOut  !important;
       }
     }
   }
 
 
 
-  position: relative;
+  position: relative  !important;
   &-img {
-    position: absolute;
-    right: -5px;
+    position: absolute  !important;
+    right: -5px  !important;
     @include breakpoint-up(medium) {
-      top: 50%;
-      transform: translateY(-50%) skew(15deg);
+      top: 50%  !important;
+      transform: translateY(-50%) skew(15deg)  !important;
     }
-    top: 80%;
-    transform: translateY(-80%) skew(15deg);
+    top: 80%  !important;
+    transform: translateY(-80%) skew(15deg)  !important;
     
     @include breakpoint-up(medium){
-      width: 70%;
+      width: 70%  !important;
     }
     @include breakpoint-up(large){
-      width: 70%;
+      width: 70%  !important;
     }
-    width: 50%;
+    width: 50%  !important;
 
     &-spinner {
       .lds-ring {
-        display: inline-block;
-        position: relative;
-        width: 80px;
-        height: 80px;
+        display: inline-block  !important;
+        position: relative  !important;
+        width: 80px  !important;
+        height: 80px  !important;
       }
       .lds-ring div {
-        box-sizing: border-box;
-        display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 64px;
-        height: 64px;
-        margin: 8px;
-        border: 4px solid $lightSilver;
-        border-radius: 50%;
-        animation: lds-ring 2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        border-color: $lightSilver transparent transparent transparent;
+        box-sizing: border-box  !important;
+        display: block  !important;
+        position: absolute  !important;
+        top: 0  !important;
+        right: 0  !important;
+        width: 64px  !important;
+        height: 64px  !important;
+        margin: 8px  !important;
+        border: 4px solid $lightSilver  !important;
+        border-radius: 50%  !important;
+        animation: lds-ring 2s cubic-bezier(0.5, 0, 0.5, 1) infinite  !important;
+        border-color: $lightSilver transparent transparent transparent  !important;
       }
       .lds-ring div:nth-child(1) {
-        animation-delay: -0.45s;
+        animation-delay: -0.45s  !important;
       }
       .lds-ring div:nth-child(2) {
-        animation-delay: -0.3s;
+        animation-delay: -0.3s  !important;
       }
       .lds-ring div:nth-child(3) {
-        animation-delay: -0.15s;
+        animation-delay: -0.15s  !important;
       }
       @keyframes lds-ring {
         0% {
-          transform: rotate(0deg);
+          transform: rotate(0deg)  !important;
         }
         100% {
-          transform: rotate(360deg);
+          transform: rotate(360deg)  !important;
         }
       }
     }
@@ -233,55 +233,55 @@
 
   
   &-head {
-    transform: skew(15deg);
+    transform: skew(15deg)  !important;
 
-    width: 100%;
+    width: 100%  !important;
     @extend %flex-center;
-    justify-content: space-between;
+    justify-content: space-between  !important;
 
-    gap: 0.5rem;
+    gap: 0.5rem  !important;
     @include breakpoint-up(medium) {
-      gap: 1.25rem;
+      gap: 1.25rem  !important;
     }
 
-    font-family: $fontConthrax;
-    font-size: $fontSizeXSmall;
+    font-family: $fontConthrax  !important;
+    font-size: $fontSizeXSmall  !important;
 
     > span {
-      display: flex;
-      gap: 0.3rem;
+      display: flex  !important;
+      gap: 0.3rem  !important;
     }
 
     img:first-child {
       @include breakpoint-up(medium) {
-        height: 40px;
+        height: 40px  !important;
       }
-      height: 20px;
+      height: 20px  !important;
     }
     img:last-child {
       @include breakpoint-up(medium) {
-        height: 20px;
+        height: 20px  !important;
       }
-      height: 20px;
+      height: 20px  !important;
     }
   }
 
   &-body {
-    transform: skew(15deg);
+    transform: skew(15deg)  !important;
 
     &-info {
       @extend %flex-center;
-      align-items: flex-start;
+      align-items: flex-start  !important;
 
-      flex-direction: column;
+      flex-direction: column  !important;
       @include breakpoint-up(medium) {
       }
 
       &-model {
-        font-weight: 600;
+        font-weight: 600  !important;
       }
       &-price {
-        color: #595959;
+        color: #595959  !important;
       }
     }
   }

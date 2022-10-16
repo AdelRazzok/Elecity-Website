@@ -4,103 +4,103 @@
 
 .Hero {
 
-  position: relative;
+  position: relative  !important;
 	&::before {
-		position: absolute;
-		content: '';
-		top: -140px;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-image: linear-gradient($darkSilver, $lightSilver, $darkSilver);
-		z-index: -1;
+		position: absolute  !important;
+		content: ''  !important;
+		top: -140px  !important;
+		left: 0  !important;
+		right: 0  !important;
+		bottom: 0  !important;
+		background-image: linear-gradient($darkSilver, $lightSilver, $darkSilver)  !important;
+		z-index: -1  !important;
 	}
   
   @include breakpoint-up(medium){
-    padding-inline: 6.25rem;
-    padding-top: 1.875rem;
+    padding-inline: 6.25rem  !important;
+    padding-top: 1.875rem  !important;
   }
   @include breakpoint-up(large){
-    padding-inline: 8.75rem;
+    padding-inline: 8.75rem  !important;
   }
-  padding-inline: 1.875rem;
+  padding-inline: 1.875rem  !important;
 
 
   @include breakpoint-up(medium){
-    padding-bottom: 900px;
+    padding-bottom: 900px  !important;
   }
   @include breakpoint-up(large){
-    padding-bottom: 180px;
+    padding-bottom: 180px  !important;
   }
-  padding-bottom: 700px;
+  padding-bottom: 700px  !important;
 
   > h1 {
-    font-family: $fontOswald;
+    font-family: $fontOswald  !important;
     @include breakpoint-up(medium){
-      font-size: $fontSizeLarge;
+      font-size: $fontSizeLarge  !important;
     }
     @include breakpoint-up(large){
-      font-size: $fontSizeXLarge;
+      font-size: $fontSizeXLarge  !important;
     }
-    font-size: $fontSizeLarge;
+    font-size: $fontSizeLarge  !important;
     
-    font-weight: 500;
+    font-weight: 500  !important;
 
     > span {
-      display: block;
+      display: block  !important;
     }
   }
 
   > p {
-    font-family: $fontMontserrat;
+    font-family: $fontMontserrat  !important;
     @include breakpoint-up(large){
-      font-size: $fontSizeNormal;
+      font-size: $fontSizeNormal  !important;
     }
     @include breakpoint-up(medium){
-      font-size: $fontSizeNormal;
+      font-size: $fontSizeNormal  !important;
     }
-    font-size: $fontSizeNormal;
+    font-size: $fontSizeNormal  !important;
 
-    font-weight: 400;
-    line-height: 1.6;
-    color: $darkFont;
+    font-weight: 400  !important;
+    line-height: 1.6  !important;
+    color: $darkFont  !important;
 
-    margin-top: 1.6rem;
+    margin-top: 1.6rem  !important;
     @include breakpoint-up(large){
-      margin-bottom: 7.25rem;
+      margin-bottom: 7.25rem  !important;
     }
-    margin-bottom: 2.5rem; 
+    margin-bottom: 2.5rem  !important; 
   }
 
   &-offers {
     // Mobile et tablettes - Offres de haut en bas
     @extend %flex-center;
-    flex-direction: column;
-    align-items: flex-end;
+    flex-direction: column  !important;
+    align-items: flex-end  !important;
 
-    padding-right: 1.875rem;
+    padding-right: 1.875rem  !important;
     @include breakpoint-up(medium) {
-      padding-right: unset;
+      padding-right: unset  !important;
     }
 
     @include breakpoint-up(medium) {
-      width: 550px;
+      width: 550px  !important;
     }
-    width: 310px;
+    width: 310px  !important;
 
     // Desktop - Offres de gauche à droite
     @include breakpoint-up('large') {
-      width: unset;
-      flex-direction: unset;
-      align-items: flex-end;
-      height: 300px;
+      width: unset  !important;
+      flex-direction: unset  !important;
+      align-items: flex-end  !important;
+      height: 300px  !important;
     }
 
     // Espaces entre les offres
-    gap: 1.6rem;
+    gap: 1.6rem  !important;
 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute  !important;
+    left: 50%  !important;
+    transform: translateX(-50%)  !important;
   }
 }
